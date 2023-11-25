@@ -26,6 +26,7 @@ public class GameCtrl : MonoBehaviour
     BinaryFormatter bf;
     float timeLeft;
     private GameObject player;
+    private Vector3 initialPlayerPosition;
     
     void Awake()
     {
@@ -38,18 +39,33 @@ public class GameCtrl : MonoBehaviour
         dataFilePath = Application.persistentDataPath + "/game.dat";
 
         Debug.Log(dataFilePath);
+
+        player = GameObject.FindGameObjectWithTag("Player"); // Inisialisasi player
+        initialPlayerPosition = player.transform.position;
     }
 
     void Start()
     {
-        // ResetData();
+        ResetData();
         timeLeft = maxTime;
         HandleFirstBoot();
         UpdateHearts();
+        if(PlayerPrefs.HasKey("CPX")){
+            PlayerPrefs.DeleteKey("CPX");
+        }
     }
 
     void Update()
     {
+        if(PlayerPrefs.HasKey("CPX")){
+            float x = PlayerPrefs.GetFloat("CPX");
+            float y = PlayerPrefs.GetFloat("CPY");
+            player.transform.position = new Vector3(x,y,transform.position.z);
+            initialPlayerPosition = player.transform.position;
+
+            PlayerPrefs.DeleteKey("CPX");
+        }
+
         if(Input.GetKeyDown(KeyCode.Escape)){
             ResetData();
         }
@@ -101,7 +117,7 @@ public class GameCtrl : MonoBehaviour
     }
     public void PlayerDiedFall(GameObject player) {
         player.SetActive(false);
-        StartCoroutine(RestartLevel());
+        StartCoroutine(RespawnPlayer());
         CheckLives();
         //Invoke("RestartLevel", restartDelay);
     }
@@ -109,7 +125,7 @@ public class GameCtrl : MonoBehaviour
     {
         Debug.Log("jatuh");
         player.SetActive(false);
-        StartCoroutine(RestartLevel());
+        StartCoroutine(RespawnPlayer());
     }
 
 
@@ -181,7 +197,7 @@ public class GameCtrl : MonoBehaviour
 
     public void PlayerDrowned(GameObject player)
     {
-        Invoke("RestartLevel", restartDelay);
+        Invoke("RespawnPlayer", restartDelay);
     }
 
     public void updateCoinCount(){
@@ -242,6 +258,37 @@ public class GameCtrl : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
+    IEnumerator RespawnPlayer()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        // Reset posisi pemain ke posisi awal
+        player.transform.position = initialPlayerPosition;
+
+        // Reset rotasi pemain
+        player.transform.rotation = Quaternion.identity;
+
+        // Menyalakan kembali pemain dan komponen yang diperlukan
+        player.SetActive(true);
+        player.GetComponent<PlayerCtrl>().enabled = true;
+
+        Collider2D[] colliders = player.GetComponents<Collider2D>();
+        foreach (Collider2D c2d in colliders)
+        {
+            c2d.enabled = true;
+        }
+
+        foreach (Transform child in player.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+
+        // Menyalakan kembali kontrol kamera
+        Camera.main.GetComponent<CameraCtrl>().enabled = true;
+
+        UpdateHearts();
+    }
+
     void UpdateTimer(){
         timeLeft -= Time.deltaTime;
         textTimer.text = "Timer : " + (int)timeLeft;
@@ -295,6 +342,14 @@ public class GameCtrl : MonoBehaviour
         }
     }
 
+    public void DecreaseLivesFireTrap()
+    {
+        double updatedLives = data.lives;
+        updatedLives -= 0.25;
+        data.lives = updatedLives;
+        UpdateHearts();
+    }
+
     public void CheckLives(){
         double updatedLives = data.lives;
         updatedLives -=1;
@@ -304,7 +359,7 @@ public class GameCtrl : MonoBehaviour
             Invoke("GameOver", restartDelay);
         } else {
             SaveData();
-            StartCoroutine(RestartLevel());
+            StartCoroutine(RespawnPlayer());
         }
     }
 
@@ -320,7 +375,7 @@ public class GameCtrl : MonoBehaviour
             Invoke("GameOver", restartDelay);
         } else {
             SaveData();
-            StartCoroutine(RestartLevel());
+            StartCoroutine(RespawnPlayer());
         }
     }
     void GameOver(){

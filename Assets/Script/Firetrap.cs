@@ -13,6 +13,7 @@ public class Firetrap : MonoBehaviour
 
     private bool triggered; 
     private bool active; 
+    private bool playerInside;
 
     private void Awake()
     {
@@ -24,11 +25,27 @@ public class Firetrap : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (!triggered)
+            if (!triggered) {
                 StartCoroutine(ActivateFiretrap());
+                playerInside = true;
+            }
+        }
+    }
 
-            // if (active)
-            //     collision.GetComponent<Health>().TakeDamage(damage);
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            playerInside = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player" && active && !playerInside)
+        {
+            GameCtrl.instance.DecreaseLivesFireTrap();
+            playerInside = true;  // Set playerInside to true to avoid continuously decreasing lives
         }
     }
     private IEnumerator ActivateFiretrap()
@@ -48,5 +65,7 @@ public class Firetrap : MonoBehaviour
         active = false;
         triggered = false;
         anim.SetBool("activated", false);
+
+
     }
 }
