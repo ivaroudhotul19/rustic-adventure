@@ -7,12 +7,18 @@ public class AudioCtrl : MonoBehaviour
     public PlayerAudio playerAudio;
     public AudioFX audioFX;
     public Transform player;
+    public GameObject BGMusic;
+    public bool bgMusicOn;
 
     public bool soundOn;
     void Start()
     {
         if(instance == null) {
             instance = this;
+        }
+
+        if(bgMusicOn) {
+            BGMusic.SetActive(true);
         }
     }
 
@@ -43,6 +49,30 @@ public class AudioCtrl : MonoBehaviour
     public void BreakableCrates(Vector3 playerPos){
         if(soundOn) {
             AudioSource.PlayClipAtPoint(playerAudio.breakCrates, playerPos);
+        }
+    }
+
+    public void WaterSplash(Vector3 playerPos){
+        if(soundOn) {
+            AudioSource.PlayClipAtPoint(playerAudio.waterSplash, playerPos);
+        }
+    }
+
+    public void PowerUp(Vector3 playerPos){
+        if(soundOn) {
+            AudioSource.PlayClipAtPoint(playerAudio.powerUp, playerPos);
+        }
+    }
+
+    public void KeyFound(Vector3 playerPos){
+        if(soundOn) {
+            AudioSource.PlayClipAtPoint(playerAudio.keyFound, playerPos);
+        }
+    }
+
+    public void PlayerDied(Vector3 playerPos){
+        if(soundOn) {
+            AudioSource.PlayClipAtPoint(playerAudio.playerDied, playerPos);
         }
     }
 }

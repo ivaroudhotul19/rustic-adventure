@@ -11,4 +11,9 @@ public class PlayerAudio
     public AudioClip fireBullets;
     public AudioClip enemyExplosion;
     public AudioClip breakCrates;
+
+    public AudioClip waterSplash;
+    public AudioClip powerUp;
+    public AudioClip keyFound;
+    public AudioClip playerDied;
 }

@@ -757,7 +757,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rustic Adventure Journey
+  m_Text: Adventure of Ruvy Fox
 --- !u!222 &789003629
 CanvasRenderer:
   m_ObjectHideFlags: 0

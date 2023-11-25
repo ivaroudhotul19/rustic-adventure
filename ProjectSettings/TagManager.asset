@@ -12,6 +12,7 @@ TagManager:
   - Water
   - Enemy
   - ShinningCoin
+  - Platform
   layers:
   - Default
   - TransparentFX

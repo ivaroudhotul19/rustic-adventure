@@ -22,7 +22,7 @@ public class PlayerCtrl : MonoBehaviour
 	Rigidbody2D rb;
 	SpriteRenderer sr;
 	Animator anim;
-	bool isJumping, canDoubleJump;
+	public bool isJumping, canDoubleJump;
 	bool leftPressed, rightPressed;
 	void Start()
 	{
@@ -161,6 +161,7 @@ public class PlayerCtrl : MonoBehaviour
 		}
 		if (other.gameObject.CompareTag ("Enemy")) {
 			GameCtrl.instance.PlayerDiedAnimation(gameObject);
+			AudioCtrl.instance.PlayerDied(gameObject.transform.position);
 		}
 		if (other.gameObject.CompareTag ("ShinningCoin")) {
 			GameCtrl.instance.updateCoinCount();
@@ -185,10 +186,12 @@ public class PlayerCtrl : MonoBehaviour
 				break;
 			case "Water":
 				SFXCtrl.instance.ShowSplash(other.gameObject.transform.position);
+				AudioCtrl.instance.WaterSplash(gameObject.transform.position);
 				break;
 			case "Powerup_Bullet":
 				canFire = true;
 				Vector3 powerupPos = other.gameObject.transform.position; // Store the position in the 'powerupPos' variable
+				AudioCtrl.instance.PowerUp(gameObject.transform.position);
 				Destroy(other.gameObject);
 				if (SFXOn)
 					SFXCtrl.instance.ShowBulletSparkle(powerupPos);
