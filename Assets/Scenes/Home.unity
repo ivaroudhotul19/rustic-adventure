@@ -6973,7 +6973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAudio: {fileID: 2106011922}
   buttonAction: 0
-  sceneName: Level1
+  sceneName: Menu Level
 --- !u!82 &2106011922
 AudioSource:
   m_ObjectHideFlags: 0

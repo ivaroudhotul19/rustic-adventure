@@ -27,6 +27,11 @@ public class SFXCtrl : MonoBehaviour
         Instantiate(sfx.sfx_bullet_pickup, pos, Quaternion.identity);
     }
 
+    public void ShowKeySparkle(Vector3 pos)
+    {
+        Instantiate(sfx.sfx_bullet_pickup, pos, Quaternion.identity);
+    }
+
     public void ShowPalyerLanding(Vector3 pos){
         Instantiate(sfx.sfx_playerLands, pos, Quaternion.identity);
     }
@@ -35,6 +40,7 @@ public class SFXCtrl : MonoBehaviour
         Instantiate(sfx.sfx_splash, pos, Quaternion.identity);
     }
 
+   
     public void HandleBoxBreaking(Vector3 pos) {
         Vector3 pos1 = pos;
         pos1.x -= 0.3f;

@@ -372,13 +372,21 @@ public class GameCtrl : MonoBehaviour
         Debug.Log("musuh");
 
         if(data.lives == 0) {
+            data.lives = 5;
+            SaveData();
             Invoke("GameOver", restartDelay);
         } else {
             SaveData();
             StartCoroutine(RespawnPlayer());
         }
     }
-    void GameOver(){
 
+    public void UpdateKeyCount(){
+        data.keyFound = true;
+
+        ui.keyImage.sprite = ui.keySprite;
+    }
+    void GameOver(){
+        ui.panelGameOver.SetActive(true);
     }
 }

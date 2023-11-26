@@ -15,4 +15,8 @@ public class UI {
     public Sprite heartHalf; // Sprite setengah hati
     public Sprite heartQuarter; // Sprite seperempat hati
     public Sprite heartEmpty; // Sprite hati kosong
+    public Image keyImage;
+    public Sprite keySprite;
+
+    public GameObject panelGameOver;
 }

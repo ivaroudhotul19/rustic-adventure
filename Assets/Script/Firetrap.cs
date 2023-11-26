@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Firetrap : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    //[SerializeField] private float damage;
 
     [Header("Firetrap Timers")]
     [SerializeField] private float activationDelay;
@@ -45,7 +45,7 @@ public class Firetrap : MonoBehaviour
         if (collision.tag == "Player" && active && !playerInside)
         {
             GameCtrl.instance.DecreaseLivesFireTrap();
-            playerInside = true;  // Set playerInside to true to avoid continuously decreasing lives
+            playerInside = true; 
         }
     }
     private IEnumerator ActivateFiretrap()
@@ -65,7 +65,6 @@ public class Firetrap : MonoBehaviour
         active = false;
         triggered = false;
         anim.SetBool("activated", false);
-
-
     }
+    
 }
