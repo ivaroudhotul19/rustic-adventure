@@ -386,6 +386,10 @@ public class GameCtrl : MonoBehaviour
 
         ui.keyImage.sprite = ui.keySprite;
     }
+
+    public int GetScore(){
+        return data.score;
+    }
     void GameOver(){
         ui.panelGameOver.SetActive(true);
     }

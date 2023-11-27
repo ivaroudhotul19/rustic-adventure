@@ -1570,7 +1570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &52938421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5240,7 +5240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &162892945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15790,14 +15790,14 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: dd731a3eca6282e4793ae7101653a4ad, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 6c685872ced1871498b867e833754380, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 584315454}
   m_OnClick:
     m_PersistentCalls:
@@ -37634,6 +37634,7 @@ GameObject:
   - component: {fileID: 1399345088}
   - component: {fileID: 1399345090}
   - component: {fileID: 1399345089}
+  - component: {fileID: 1399345091}
   m_Layer: 0
   m_Name: panel_Level_Complate
   m_TagString: Untagged
@@ -37708,6 +37709,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399345087}
   m_CullTransparentMesh: 1
+--- !u!114 &1399345091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399345087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1df90a7b110f945a175a81f6bcbe07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btnNext: {fileID: 584315453}
+  goldenStar: {fileID: 21300000, guid: 2e7fd2ed5f7ba2c4b81b7f46f3265daf, type: 3}
+  Star1: {fileID: 132414894}
+  Star2: {fileID: 203278785}
+  Star3: {fileID: 621883206}
+  txtScore: {fileID: 1488520042}
+  levelNumber: 1
+  score: 0
+  ScoreForThreeStars: 7
+  ScoreForTwoStars: 3
+  ScoreForOneStar: 0
+  ScoreForNextLevel: 7
+  animStartDelay: 0.5
+  animDelay: 0.7
 --- !u!4 &1400706998 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1555588447175200384, guid: 3371e9ae5d081dd448b4a3287367ef75, type: 3}
@@ -39861,7 +39888,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SCORE
+  m_Text: SCORE Value
 --- !u!222 &1488520043
 CanvasRenderer:
   m_ObjectHideFlags: 0
