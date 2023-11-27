@@ -12,6 +12,13 @@ public class SimpleMovement : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
+    private bool isHitByPowerBullet = false;
+
+    private const int IDLE_STATE = 0;
+    private const int HIT_STATE = 1;
+    private const int SEVERE_HURT_STATE = 2;
+    private const int DEATH_STATE = 3;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>(); 
@@ -23,28 +30,60 @@ public class SimpleMovement : MonoBehaviour
     }
 
     void Update() {
-        Move();
-        
+        if (currentHealth == 0)
+        {
+            StartCoroutine(DelayedBulletHitEnemy());
+        } 
+        else if (currentHealth == 1)
+        {
+            StartCoroutine(ResetHitByPowerBulletFlagSevereHurt());
+        }
+
+        if (!isHitByPowerBullet)  // Only move if not hit by a power bullet
+        {
+            Move();
+            anim.SetInteger("State", IDLE_STATE);
+        }
     }
 
     void Move(){
         Vector2 temp = rb.velocity;
         temp.x = speed;
         rb.velocity = temp;
-        anim.SetInteger("State", 1);
     }
 
     void SetStartingDirection(){
-        if(speed < 0) {
-            sr.flipX = true;
-        } else if(speed > 0) {
-            sr.flipX = false;
-        }
+        sr.flipX = speed < 0;
     }
 
     void FlipOnCollision(){
         speed = -speed;
         SetStartingDirection();
+    }
+
+    IEnumerator ResetHitByPowerBulletFlag()
+    {
+        isHitByPowerBullet = true;
+        anim.SetInteger("State", HIT_STATE);
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1.0f);
+        isHitByPowerBullet = false;
+    }
+
+    IEnumerator ResetHitByPowerBulletFlagSevereHurt()
+    {
+        isHitByPowerBullet = true;
+        anim.SetInteger("State", HIT_STATE);
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1.0f);
+    }
+
+    IEnumerator DelayedBulletHitEnemy()
+    {
+        anim.SetInteger("State", DEATH_STATE);
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1.5f);
+        GameCtrl.instance.BulletHitEnemy(transform);
     }
 
     public void TakeDamage(float damageAmount)
@@ -53,17 +92,30 @@ public class SimpleMovement : MonoBehaviour
 
         if (currentHealth == 0)
         {
-            GameCtrl.instance.BulletHitEnemy(transform);
+            StartCoroutine(DelayedBulletHitEnemy());
+        } 
+        else if (currentHealth == 1)
+        {
+            StartCoroutine(ResetHitByPowerBulletFlagSevereHurt());
+        }
+        else 
+        {
+            StartCoroutine(ResetHitByPowerBulletFlag());
         }
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        if(!other.gameObject.CompareTag("Player")){
+        if (other.gameObject.CompareTag("Powerup_Bullet"))
+        {
+            //
+        }
+        else if (!other.gameObject.CompareTag("Player"))
+        {
             FlipOnCollision();
-        } else {
-            if (gameCtrl != null){
-               gameCtrl.ReducePlayerHealthMushmaw();
-            }
+        }
+        else if (other.gameObject.CompareTag("Player"))
+        {
+            gameCtrl.ReducePlayerHealthMushmaw();
         }
     }
 }

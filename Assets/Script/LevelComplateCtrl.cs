@@ -24,7 +24,7 @@ public class LevelComplateCtrl : MonoBehaviour
     bool showTwoStars, showThreeStars;
     void Start()
     {
-        //score = GameCtrl.instance.GetScore(); 
+        score = GameCtrl.instance.GetScore();
         txtScore.text = "" + score;
 
         if(score >= ScoreForThreeStars)
@@ -39,7 +39,7 @@ public class LevelComplateCtrl : MonoBehaviour
             Invoke("ShowGoldenStars", animStartDelay);
         }
 
-        if (score <= ScoreForOneStar && score != 0)
+        if (score == ScoreForOneStar)
         {
             Invoke("ShowGoldenStars", animStartDelay);
         }

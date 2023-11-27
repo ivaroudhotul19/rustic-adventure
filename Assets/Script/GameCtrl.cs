@@ -355,7 +355,7 @@ public class GameCtrl : MonoBehaviour
         updatedLives -=1;
         data.lives = updatedLives;
 
-        if(data.lives == 0) {
+        if(data.lives <= 0) {
             Invoke("GameOver", restartDelay);
         } else {
             SaveData();
@@ -371,7 +371,7 @@ public class GameCtrl : MonoBehaviour
 
         Debug.Log("musuh");
 
-        if(data.lives == 0) {
+        if(data.lives <= 0) {
             data.lives = 5;
             SaveData();
             Invoke("GameOver", restartDelay);
@@ -392,5 +392,23 @@ public class GameCtrl : MonoBehaviour
     }
     void GameOver(){
         ui.panelGameOver.SetActive(true);
+
+        // Menonaktifkan skrip PlayerCtrl pada pemain
+        player.GetComponent<PlayerCtrl>().enabled = false;
+
+        // Menonaktifkan semua Collider2D pada pemain
+        Collider2D[] colliders = player.GetComponents<Collider2D>();
+        foreach (Collider2D c2d in colliders)
+        {
+            c2d.enabled = false;
+        }
+
+        // Menonaktifkan semua GameObject anak pada pemain
+        foreach (Transform child in player.transform) {
+            child.gameObject.SetActive(false);
+        }
+
+       Camera.main.GetComponent<CameraCtrl>().enabled = false;
+        
     }
 }
