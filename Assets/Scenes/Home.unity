@@ -257,6 +257,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129702797}
   m_CullTransparentMesh: 1
+--- !u!1 &170762571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170762573}
+  - component: {fileID: 170762572}
+  m_Layer: 0
+  m_Name: DataCtrl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &170762572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170762571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d135a47d835a19a4b8e46d4c802671e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    coinCount: 0
+    score: 0
+    lives: 0
+    isFirstBoot: 0
+    levelData: []
+    keyFound: 0
+--- !u!4 &170762573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170762571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7563398, y: -1.3601573, z: -9.920763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &266385129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5489,7 +5540,7 @@ SpriteRenderer:
   m_SortingLayerID: -756638733
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 546abd4e495a2d24ca0dbde65dc9d18c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e71f975a4b2022e44be7e10127e30f86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6832,7 +6883,7 @@ GameObject:
   - component: {fileID: 1938076146}
   - component: {fileID: 1938076145}
   m_Layer: 0
-  m_Name: Rustic
+  m_Name: Ruvy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

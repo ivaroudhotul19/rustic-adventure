@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Firetrap : MonoBehaviour
 {
-    //[SerializeField] private float damage;
-
     [Header("Firetrap Timers")]
     [SerializeField] private float activationDelay;
     [SerializeField] private float activeTime;
@@ -54,12 +52,10 @@ public class Firetrap : MonoBehaviour
         triggered = true;
         spriteRend.color = Color.red; 
 
-
         yield return new WaitForSeconds(activationDelay);
         spriteRend.color = Color.white; 
         active = true;
         anim.SetBool("activated", true);
-
 
         yield return new WaitForSeconds(activeTime);
         active = false;
