@@ -291,7 +291,16 @@ MonoBehaviour:
     score: 0
     lives: 0
     isFirstBoot: 0
-    levelData: []
+    levelData:
+    - levelNumber: 0
+      isUnlocked: 0
+      starsAwarded: 0
+    - levelNumber: 0
+      isUnlocked: 1
+      starsAwarded: 0
+    - levelNumber: 0
+      isUnlocked: 1
+      starsAwarded: 0
     keyFound: 0
 --- !u!4 &170762573
 Transform:

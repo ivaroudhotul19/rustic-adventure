@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu Level.unity
+    guid: fc6077538be5f4444a8e2c3604ca6848
+  - enabled: 1
     path: Assets/Scenes/Home.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 1
@@ -20,9 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 21e4e2b4af56c7c40a88d54ace31aac2
-  - enabled: 1
-    path: Assets/Scenes/Menu Level.unity
-    guid: fc6077538be5f4444a8e2c3604ca6848
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 7b4c30ffb40130b45a0b3465b3dcd447, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 113660feb0ddc9e4eb092dfe2dab45b4, type: 2}

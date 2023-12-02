@@ -41,9 +41,39 @@ public class DataCtrl : MonoBehaviour
         }
     }
 
+    public bool isUnlocked(int levelNumber) {
+        return data.levelData[levelNumber].isUnlocked;
+    }
+
+    public int getStars(int levelNumber) {
+        return data.levelData[levelNumber].starsAwarded;
+    }
+
     void OnEnable()
 	{
-        RefreshData();
+        CheckDB();
 	}
 
+    void CheckDB()
+    {
+        if (!File.Exists(dataFilePath))
+        {
+            #if UNITY_ANDROID
+            string srcFile = Path.Combine(Application.streamingAssetsPath, "game.dat");
+            WWW downloader = new WWW(srcFile);
+            while (!downloader.isDone)
+            {
+                // nothing to be done while downloader gets our db file
+            }
+
+            // then save to Application.persistentDataPath
+            File.WriteAllBytes(dataFilePath, downloader.bytes);
+            RefreshData();
+            #endif
+        }
+        else
+        {
+            RefreshData();
+        }
+    }
 }

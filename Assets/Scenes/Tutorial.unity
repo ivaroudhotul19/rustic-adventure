@@ -2900,8 +2900,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 58}
-  m_SizeDelta: {x: 257.99, y: 136.39}
+  m_AnchoredPosition: {x: 130, y: 28.097}
+  m_SizeDelta: {x: 336.93, y: 196.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971655643
 MonoBehaviour:
@@ -2936,7 +2936,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enemy Spikyfoe
+  m_Text: Enemy Landak
 --- !u!222 &971655644
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4583,7 +4583,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enemy Mushmaw
+  m_Text: Enemy Jamur
 --- !u!222 &1314562620
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5349,7 +5349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1484556104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6798,8 +6798,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -175.57, y: -214.31}
-  m_SizeDelta: {x: 251.12, y: 144.95}
+  m_AnchoredPosition: {x: -169.8, y: -238.98}
+  m_SizeDelta: {x: 262.67, y: 194.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054973606
 MonoBehaviour:
@@ -6834,7 +6834,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enemy RatRogue
+  m_Text: Enemy Tikus
 --- !u!222 &2054973607
 CanvasRenderer:
   m_ObjectHideFlags: 0
