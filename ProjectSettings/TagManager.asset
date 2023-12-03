@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - ShinningCoin
   - Platform
+  - Complete
   layers:
   - Default
   - TransparentFX

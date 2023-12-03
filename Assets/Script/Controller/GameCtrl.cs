@@ -16,6 +16,8 @@ public class GameCtrl : MonoBehaviour
     public float maxTime;
     public Text textTimer;
     public GameObject shinningCoin;
+
+    public GameObject levelCompleteMenu;
     public int shinningCoinValue;
     public int enemyValue;
     public enum Item {
@@ -112,12 +114,12 @@ public class GameCtrl : MonoBehaviour
         data.lives = 5;
         UpdateHearts();
          // Reset Level Data
-        foreach (LevelData level in data.levelData)
-        {
-            level.starsAwarded = 0;
-            if (level.levelNumber != 1)
-                level.isUnlocked = false;
-        }
+        // foreach (LevelData level in data.levelData)
+        // {
+        //     level.starsAwarded = 0;
+        //     if (level.levelNumber != 1)
+        //         level.isUnlocked = false;
+        // }
         bf.Serialize(fs,data);
         fs.Close();
         Debug.Log("Data Reset");
@@ -392,6 +394,11 @@ public class GameCtrl : MonoBehaviour
         data.keyFound = true;
 
         ui.keyImage.sprite = ui.keySprite;
+
+        if(data.keyFound) {
+            GameObject finish = GameObject.FindGameObjectWithTag("Finish");
+            Destroy(finish);
+        }
     }
 
     public int GetScore(){
@@ -431,5 +438,10 @@ public class GameCtrl : MonoBehaviour
 
        Camera.main.GetComponent<CameraCtrl>().enabled = false;
         
+    }
+
+    public void LevelComplete()
+    {
+        levelCompleteMenu.SetActive(true);
     }
 }

@@ -5,35 +5,46 @@ using UnityEngine;
 public class SimpleMovement : MonoBehaviour
 {
     public float maxHealth;
-    private float currentHealth; 
+    private float currentHealth;
     private GameCtrl gameCtrl;
 
     public float speed;
+    public float moveDistance;  // Jarak pergerakan keseluruhan
+    private float initialPositionX;  // Posisi awal karakter
+    private float targetPositionX;  // Posisi tujuan berikutnya
+    private bool movingRight = true;  // Arah pergerakan saat ini
+
+    private GameObject player;
+
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
     private bool isHitByPowerBullet = false;
+    private bool isChasingPlayer = false;
 
     private const int IDLE_STATE = 0;
     private const int HIT_STATE = 1;
     private const int SEVERE_HURT_STATE = 2;
     private const int DEATH_STATE = 3;
 
-    void Start() {
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>(); 
-        SetStartingDirection();
+        sr = GetComponent<SpriteRenderer>();
         gameCtrl = GameCtrl.instance;
         anim = GetComponent<Animator>();
-
+        player = GameObject.FindGameObjectWithTag("Player");
         currentHealth = maxHealth;
+        initialPositionX = transform.position.x;  // Simpan posisi awal karakter
+        SetNextTarget();
     }
 
-    void Update() {
+    void Update()
+    {
         if (currentHealth == 0)
         {
             StartCoroutine(DelayedBulletHitEnemy());
-        } 
+        }
         else if (currentHealth == 1)
         {
             StartCoroutine(ResetHitByPowerBulletFlagSevereHurt());
@@ -41,24 +52,48 @@ public class SimpleMovement : MonoBehaviour
 
         if (!isHitByPowerBullet)  // Only move if not hit by a power bullet
         {
-            Move();
-            anim.SetInteger("State", IDLE_STATE);
+            if (!isChasingPlayer)
+            {
+                // Bergerak ke kanan atau kiri dengan kecepatan tetap
+                Move();
+                UpdateAnimationState();
+            }
         }
     }
 
-    void Move(){
-        Vector2 temp = rb.velocity;
-        temp.x = speed;
-        rb.velocity = temp;
+    void Move()
+    {
+        float horizontalInput = Mathf.Sign(targetPositionX - transform.position.x) * 1.0f;
+
+        // Bergerak ke kanan atau kiri
+        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+
+        // Periksa apakah mencapai target posisi
+        if (Mathf.Abs(transform.position.x - targetPositionX) < 0.1f)
+        {
+            SetNextTarget();  // Set posisi tujuan berikutnya setelah mencapai target
+        }
+
     }
 
-    void SetStartingDirection(){
-        sr.flipX = speed < 0;
+    void SetNextTarget()
+    {
+        // Tentukan posisi tujuan berikutnya berdasarkan arah pergerakan saat ini
+        targetPositionX = movingRight ? initialPositionX + moveDistance : initialPositionX - moveDistance;
+        movingRight = !movingRight;  // Ubah arah pergerakan
+        SetStartingDirection();  // Tetapkan arah karakter sesuai dengan perubahan arah
     }
 
-    void FlipOnCollision(){
-        speed = -speed;
-        SetStartingDirection();
+    void SetStartingDirection()
+    {
+        // Tetapkan arah awal karakter sesuai dengan arah pergerakan
+        sr.flipX = movingRight;
+    }
+
+    void UpdateAnimationState()
+    {
+        // Atur animasi ke mode berjalan
+        anim.SetInteger("State", IDLE_STATE);
     }
 
     IEnumerator ResetHitByPowerBulletFlag()
@@ -66,7 +101,9 @@ public class SimpleMovement : MonoBehaviour
         isHitByPowerBullet = true;
         anim.SetInteger("State", HIT_STATE);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1.0f);
+        StartCoroutine(ChasePlayer());
+
+        yield return new WaitForSeconds(10.0f);
         isHitByPowerBullet = false;
     }
 
@@ -86,6 +123,28 @@ public class SimpleMovement : MonoBehaviour
         GameCtrl.instance.BulletHitEnemy(transform);
     }
 
+    IEnumerator ChasePlayer()
+    {
+        isChasingPlayer = true;
+        while (Vector2.Distance(transform.position, player.transform.position) > 0.5f)
+        {
+            // Hitung arah menuju pemain
+            Vector2 direction = (player.transform.position - transform.position).normalized;
+
+            // Bergerak ke arah pemain
+            rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
+
+            // Tetapkan arah karakter sesuai dengan perubahan arah
+            sr.flipX = direction.x < 0;
+
+            yield return null;
+        }
+
+        // Setelah selesai mengejar, hentikan karakter
+        rb.velocity = Vector2.zero;
+        isChasingPlayer = false;;
+    }
+
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
@@ -93,26 +152,23 @@ public class SimpleMovement : MonoBehaviour
         if (currentHealth == 0)
         {
             StartCoroutine(DelayedBulletHitEnemy());
-        } 
+        }
         else if (currentHealth == 1)
         {
             StartCoroutine(ResetHitByPowerBulletFlagSevereHurt());
         }
-        else 
+        else
         {
             StartCoroutine(ResetHitByPowerBulletFlag());
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.CompareTag("Powerup_Bullet"))
         {
-            //
-        }
-        else if (!other.gameObject.CompareTag("Player"))
-        {
-            FlipOnCollision();
-        }
+            // Handle collision with power-up bullet if needed
+        } 
         else if (other.gameObject.CompareTag("Player"))
         {
             gameCtrl.ReducePlayerHealthMushmaw();
