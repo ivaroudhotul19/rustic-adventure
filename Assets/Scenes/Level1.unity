@@ -20595,7 +20595,7 @@ MonoBehaviour:
     heartEmpty: {fileID: 21300000, guid: a4bb227e69c0f5e4a8680f4377df5253, type: 3}
     keyImage: {fileID: 0}
     keySprite: {fileID: 0}
-    panelGameOver: {fileID: 0}
+    panelGameOver: {fileID: 1089359989}
   data:
     coinCount: 0
     score: 0
