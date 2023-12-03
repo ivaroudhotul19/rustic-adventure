@@ -185,6 +185,7 @@ public class PlayerCtrl : MonoBehaviour
 				}
 				break;
 			case "Water":
+				Debug.Log($"Nyemplung");
 				SFXCtrl.instance.ShowSplash(other.gameObject.transform.position);
 				AudioCtrl.instance.WaterSplash(gameObject.transform.position);
 				break;
