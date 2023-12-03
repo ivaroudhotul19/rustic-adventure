@@ -104,6 +104,7 @@ public class SimpleMovement : MonoBehaviour
         StartCoroutine(ChasePlayer());
 
         yield return new WaitForSeconds(5.0f);
+        sr.flipX = movingRight;
         isHitByPowerBullet = false;
     }
 
