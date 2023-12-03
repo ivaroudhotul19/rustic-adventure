@@ -103,7 +103,7 @@ public class SimpleMovement : MonoBehaviour
         rb.velocity = Vector2.zero;
         StartCoroutine(ChasePlayer());
 
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(5.0f);
         isHitByPowerBullet = false;
     }
 
@@ -142,7 +142,7 @@ public class SimpleMovement : MonoBehaviour
 
         // Setelah selesai mengejar, hentikan karakter
         rb.velocity = Vector2.zero;
-        isChasingPlayer = false;;
+        isChasingPlayer = false;
     }
 
     public void TakeDamage(float damageAmount)
