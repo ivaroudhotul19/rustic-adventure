@@ -22,10 +22,10 @@ public class SimpleMovement : MonoBehaviour
     private bool isHitByPowerBullet = false;
     private bool isChasingPlayer = false;
 
-    private const int IDLE_STATE = 0;
-    private const int HIT_STATE = 1;
-    private const int SEVERE_HURT_STATE = 2;
-    private const int DEATH_STATE = 3;
+    private const int diam = 0;
+    private const int berjalan = 1;
+    private const int menyerang = 2;
+    private const int mati = 3;
 
     void Start()
     {
@@ -93,33 +93,33 @@ public class SimpleMovement : MonoBehaviour
     void UpdateAnimationState()
     {
         // Atur animasi ke mode berjalan
-        anim.SetInteger("State", IDLE_STATE);
+        anim.SetInteger("State", berjalan);
     }
 
     IEnumerator ResetHitByPowerBulletFlag()
     {
         isHitByPowerBullet = true;
-        anim.SetInteger("State", HIT_STATE);
+        anim.SetInteger("State", menyerang);
         rb.velocity = Vector2.zero;
         StartCoroutine(ChasePlayer());
 
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(1.0f);
         isHitByPowerBullet = false;
     }
 
     IEnumerator ResetHitByPowerBulletFlagSevereHurt()
     {
         isHitByPowerBullet = true;
-        anim.SetInteger("State", HIT_STATE);
+        anim.SetInteger("State", diam);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(5.0f);
     }
 
     IEnumerator DelayedBulletHitEnemy()
     {
-        anim.SetInteger("State", DEATH_STATE);
+        anim.SetInteger("State", mati);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         GameCtrl.instance.BulletHitEnemy(transform);
     }
 
@@ -140,7 +140,7 @@ public class SimpleMovement : MonoBehaviour
             yield return null;
         }
 
-        // Setelah selesai mengejar, hentikan karakter
+        // Setelah selesai menyerang, hentikan karakter
         rb.velocity = Vector2.zero;
         isChasingPlayer = false;
     }

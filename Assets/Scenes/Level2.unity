@@ -55201,6 +55201,7 @@ MonoBehaviour:
   maxTime: 200
   textTimer: {fileID: 983726702}
   shinningCoin: {fileID: 3103767210384849409, guid: 2b168814c43044449ad798792cec9b4e, type: 3}
+  levelCompleteMenu: {fileID: 0}
   shinningCoinValue: 10
   enemyValue: 50
 --- !u!1001 &1531503386
@@ -77505,9 +77506,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116402154}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 870017343}
