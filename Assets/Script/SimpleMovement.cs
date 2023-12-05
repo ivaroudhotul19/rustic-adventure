@@ -103,7 +103,8 @@ public class SimpleMovement : MonoBehaviour
         rb.velocity = Vector2.zero;
         StartCoroutine(ChasePlayer());
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(5.0f);
+        sr.flipX = movingRight;
         isHitByPowerBullet = false;
     }
 
