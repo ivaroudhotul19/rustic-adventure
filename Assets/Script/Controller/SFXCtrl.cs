@@ -39,6 +39,10 @@ public class SFXCtrl : MonoBehaviour
     public void ShowSplash(Vector3 pos){
         Instantiate(sfx.sfx_splash, pos, Quaternion.identity);
     }
+    public void ShowEnemyPoof(Vector3 pos)
+    {
+        Instantiate(sfx.sfx_playerLands, pos, Quaternion.identity);
+    }
 
    
     public void HandleBoxBreaking(Vector3 pos) {

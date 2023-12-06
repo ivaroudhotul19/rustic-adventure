@@ -372,10 +372,46 @@ public class GameCtrl : MonoBehaviour
         }
     }
 
-    public void ReducePlayerHealthMushmaw()
+    public void ReducePlayerHealthJamur()
     {
         double updatedLives = data.lives;
         updatedLives -=0.25;
+        data.lives = updatedLives;
+
+        Debug.Log("musuh");
+
+        if(data.lives <= 0) {
+            data.lives = 5;
+            SaveData();
+            Invoke("GameOver", restartDelay);
+        } else {
+            SaveData();
+            StartCoroutine(RespawnPlayer());
+        }
+    }
+
+    public void ReducePlayerHealthTikus()
+    {
+        double updatedLives = data.lives;
+        updatedLives -=0.5;
+        data.lives = updatedLives;
+
+        Debug.Log("musuh");
+
+        if(data.lives <= 0) {
+            data.lives = 5;
+            SaveData();
+            Invoke("GameOver", restartDelay);
+        } else {
+            SaveData();
+            StartCoroutine(RespawnPlayer());
+        }
+    }
+
+    public void ReducePlayerHealthLandak()
+    {
+        double updatedLives = data.lives;
+        updatedLives -=1;
         data.lives = updatedLives;
 
         Debug.Log("musuh");
@@ -394,11 +430,13 @@ public class GameCtrl : MonoBehaviour
         data.keyFound = true;
 
         ui.keyImage.sprite = ui.keySprite;
-
         if(data.keyFound) {
-            GameObject finish = GameObject.FindGameObjectWithTag("Finish");
+        GameObject[] finishObjectsArray = GameObject.FindGameObjectsWithTag("Finish");
+
+        foreach (GameObject finish in finishObjectsArray) {
             Destroy(finish);
         }
+    }
     }
 
     public int GetScore(){
@@ -438,6 +476,12 @@ public class GameCtrl : MonoBehaviour
 
        Camera.main.GetComponent<CameraCtrl>().enabled = false;
         
+    }
+    public void PlayerStompsEnemy(GameObject enemy)
+    {
+        enemy.tag = "Enemy";
+        Destroy(enemy);
+        //UpdateScore(Item.Enemy);
     }
 
     public void LevelComplete()

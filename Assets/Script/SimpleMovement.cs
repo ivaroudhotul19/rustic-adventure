@@ -172,7 +172,13 @@ public class SimpleMovement : MonoBehaviour
         } 
         else if (other.gameObject.CompareTag("Player"))
         {
-            gameCtrl.ReducePlayerHealthMushmaw();
+            gameCtrl.ReducePlayerHealthJamur();
+        }
+        else if (other.gameObject.CompareTag("Water"))
+        {
+            // Handle collision with water
+            StartCoroutine(DelayedBulletHitEnemy());
+            SFXCtrl.instance.ShowSplash(other.gameObject.transform.position);
         }
     }
 }
