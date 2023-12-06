@@ -24,6 +24,11 @@ public class PlayerBulletCtrl : MonoBehaviour {
             {
                 simpleMovement.TakeDamage(1);
             }
+			SimpleMovementTikus simpleMovementTikus = other.gameObject.GetComponent<SimpleMovementTikus>();
+			if (simpleMovementTikus != null)
+			{
+				simpleMovementTikus.TakeDamage(1);
+			}
             Destroy(gameObject);
 		} else if(!other.gameObject.CompareTag("Player")) {
 			Destroy(gameObject);

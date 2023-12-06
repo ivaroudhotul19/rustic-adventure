@@ -16,13 +16,14 @@ public class GameCtrl : MonoBehaviour
     public float maxTime;
     public Text textTimer;
     public GameObject shinningCoin;
-
     public GameObject levelCompleteMenu;
     public int shinningCoinValue;
     public int enemyValue;
     public enum Item {
         Coin, ShinningCoin, Enemy
     }
+
+    public GameObject mobileUI;
 
     string dataFilePath;
     BinaryFormatter bf;
