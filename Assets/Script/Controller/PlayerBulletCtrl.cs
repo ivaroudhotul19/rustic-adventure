@@ -29,6 +29,11 @@ public class PlayerBulletCtrl : MonoBehaviour {
 			{
 				simpleMovementTikus.TakeDamage(1);
 			}
+			SimpleMovementLandak simpleMovementLandak = other.gameObject.GetComponent<SimpleMovementLandak>();
+			if (simpleMovementLandak != null)
+			{
+				simpleMovementLandak.TakeDamage(1);
+			}
             Destroy(gameObject);
 		} else if(!other.gameObject.CompareTag("Player")) {
 			Destroy(gameObject);

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections;
 
@@ -19,17 +20,32 @@ public class Firetrap : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.tag == "Player")
+    //     {
+    //         if (!triggered) {
+    //             StartCoroutine(ActivateFiretrap());
+    //             playerInside = true;
+    //         }
+    //     }
+    // }
+private void OnTriggerEnter2D(Collider2D collision)
+{
+    if (collision.tag == "Player")
     {
-        if (collision.tag == "Player")
-        {
-            if (!triggered) {
-                StartCoroutine(ActivateFiretrap());
-                playerInside = true;
-            }
+        if (!triggered) {
+            DecreaseLivesAndActivateFiretrap();
         }
     }
+}
 
+private void DecreaseLivesAndActivateFiretrap()
+{
+    GameCtrl.instance.DecreaseLivesFireTrap();
+    StartCoroutine(ActivateFiretrap());
+    playerInside = true;
+}
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -46,6 +62,9 @@ public class Firetrap : MonoBehaviour
             playerInside = true; 
         }
     }
+
+
+    
     private IEnumerator ActivateFiretrap()
     {
 

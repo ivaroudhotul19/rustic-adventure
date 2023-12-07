@@ -192,10 +192,10 @@ public class SimpleMovement : MonoBehaviour
         {
             // Handle collision with power-up bullet if needed
         } 
-        else if (other.gameObject.CompareTag("Player"))
-        {
-            gameCtrl.ReducePlayerHealthJamur();
-        }
+        // else if (other.gameObject.CompareTag("Player"))
+        // {
+        //     gameCtrl.ReducePlayerHealthJamur();
+        // }
         else if (other.gameObject.CompareTag("Water"))
         {
             // Handle collision with water
@@ -206,7 +206,7 @@ public class SimpleMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Barrier"))
+        if (other.gameObject.CompareTag("Barrier") || other.gameObject.CompareTag("Ground") )
         {
             ResetChase();
             StartCoroutine(DelayedMove());

@@ -488,5 +488,6 @@ public class GameCtrl : MonoBehaviour
     public void LevelComplete()
     {
         levelCompleteMenu.SetActive(true);
+        mobileUI.SetActive(false);
     }
 }

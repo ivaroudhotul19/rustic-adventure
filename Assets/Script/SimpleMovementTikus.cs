@@ -195,6 +195,9 @@ public class SimpleMovementTikus : MonoBehaviour
         else if (other.gameObject.CompareTag("Player"))
         {
             gameCtrl.ReducePlayerHealthTikus();
+        } else if (other.gameObject.CompareTag("Barrier")) {
+            ResetChase();
+            StartCoroutine(DelayedMove());
         }
         else if (other.gameObject.CompareTag("Water"))
         {

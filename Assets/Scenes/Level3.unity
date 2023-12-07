@@ -33455,7 +33455,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -39737,6 +39737,7 @@ MonoBehaviour:
   levelCompleteMenu: {fileID: 0}
   shinningCoinValue: 10
   enemyValue: 50
+  mobileUI: {fileID: 0}
 --- !u!1001 &1533074624
 PrefabInstance:
   m_ObjectHideFlags: 0

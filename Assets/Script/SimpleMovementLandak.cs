@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimpleMovementLandak : MonoBehaviour
 {
-        public float maxHealth;
+    public float maxHealth;
     private float currentHealth;
     private GameCtrl gameCtrl;
 
@@ -98,12 +98,16 @@ public class SimpleMovementLandak : MonoBehaviour
 
     IEnumerator ResetHitByPowerBulletFlag()
     {
-        isHitByPowerBullet = true;
-        anim.SetInteger("State", menyerang);
-        rb.velocity = Vector2.zero;
-        StartCoroutine(ChasePlayer());
+        if (!isChasingPlayer)
+        {
+            isHitByPowerBullet = true;
+            anim.SetInteger("State", menyerang);
+            rb.velocity = Vector2.zero;
+            StartCoroutine(ChasePlayer());
+        }
 
         yield return new WaitForSeconds(5.0f);
+
         sr.flipX = movingRight;
         isHitByPowerBullet = false;
     }
@@ -126,24 +130,27 @@ public class SimpleMovementLandak : MonoBehaviour
 
     IEnumerator ChasePlayer()
     {
-        isChasingPlayer = true;
-        while (Vector2.Distance(transform.position, player.transform.position) > 0.5f)
+        if (!isChasingPlayer)
         {
-            // Hitung arah menuju pemain
-            Vector2 direction = (player.transform.position - transform.position).normalized;
+            isChasingPlayer = true;
+            while (isChasingPlayer && Vector2.Distance(transform.position, player.transform.position) > 0.5f)
+            {
+                // Hitung arah menuju pemain
+                Vector2 direction = (player.transform.position - transform.position).normalized;
 
-            // Bergerak ke arah pemain
-            rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
+                // Bergerak ke arah pemain
+                rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
 
-            // Tetapkan arah karakter sesuai dengan perubahan arah
-            sr.flipX = direction.x < 0;
+                // Tetapkan arah karakter sesuai dengan perubahan arah
+                sr.flipX = direction.x < 0;
 
-            yield return null;
+                yield return null;
+            }
+
+            // Setelah selesai menyerang, hentikan karakter
+            rb.velocity = Vector2.zero;
+            isChasingPlayer = false;
         }
-
-        // Setelah selesai menyerang, hentikan karakter
-        rb.velocity = Vector2.zero;
-        isChasingPlayer = false;
     }
 
     public void TakeDamage(float damageAmount)
@@ -164,6 +171,21 @@ public class SimpleMovementLandak : MonoBehaviour
         }
     }
 
+    IEnumerator DelayedMove()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Move();
+        UpdateAnimationState();
+    }
+
+    void ResetChase()
+    {
+        StopCoroutine("ChasePlayer");
+        isChasingPlayer = false;
+        isHitByPowerBullet = false;
+        sr.flipX = movingRight;
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Powerup_Bullet"))
@@ -173,12 +195,24 @@ public class SimpleMovementLandak : MonoBehaviour
         else if (other.gameObject.CompareTag("Player"))
         {
             gameCtrl.ReducePlayerHealthLandak();
+        } else if (other.gameObject.CompareTag("Barrier")) {
+            ResetChase();
+            StartCoroutine(DelayedMove());
         }
         else if (other.gameObject.CompareTag("Water"))
         {
             // Handle collision with water
             StartCoroutine(DelayedBulletHitEnemy());
             SFXCtrl.instance.ShowSplash(other.gameObject.transform.position);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Barrier"))
+        {
+            ResetChase();
+            StartCoroutine(DelayedMove());
         }
     }
 }
