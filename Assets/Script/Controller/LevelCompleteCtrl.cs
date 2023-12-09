@@ -30,20 +30,20 @@ public class LevelCompleteCtrl : MonoBehaviour
         if(score >= ScoreForThreeStars)
         {
             showThreeStars = true;
-            // GameCtrl.instance.SetStarsAwarded(levelNumber, 3);
+            GameCtrl.instance.SetStarsAwarded(levelNumber, 3);
             Invoke("ShowGoldenStars", animStartDelay);
         }
 
         if (score >= ScoreForTwoStars && score < ScoreForThreeStars)
         {
             showTwoStars = true;
-            // GameCtrl.instance.SetStarsAwarded(levelNumber, 2);
+            GameCtrl.instance.SetStarsAwarded(levelNumber, 2);
             Invoke("ShowGoldenStars", animStartDelay);
         }
 
         if (score == ScoreForOneStar)
         {
-            // GameCtrl.instance.SetStarsAwarded(levelNumber, 1);
+            GameCtrl.instance.SetStarsAwarded(levelNumber, 1);
             Invoke("ShowGoldenStars", animStartDelay);
         }
     }

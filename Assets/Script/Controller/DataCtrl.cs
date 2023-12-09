@@ -9,7 +9,8 @@ public class DataCtrl : MonoBehaviour
     public static DataCtrl instance = null;
     public GameData data;     
     string dataFilePath; 
-    BinaryFormatter bf;                         
+    BinaryFormatter bf;
+    public bool devMode;                          
 
     void Awake()
     {
@@ -59,21 +60,42 @@ public class DataCtrl : MonoBehaviour
         if (!File.Exists(dataFilePath))
         {
             #if UNITY_ANDROID
-            string srcFile = Path.Combine(Application.streamingAssetsPath, "game.dat");
-            WWW downloader = new WWW(srcFile);
-            while (!downloader.isDone)
-            {
-                // nothing to be done while downloader gets our db file
-            }
-
-            // then save to Application.persistentDataPath
-            File.WriteAllBytes(dataFilePath, downloader.bytes);
-            RefreshData();
+            CopyDB();
             #endif
         }
         else
         {
+            if(SystemInfo.deviceType == DeviceType.Desktop)
+            {
+                string destFile = Path.Combine(Application.streamingAssetsPath, "game.dat");
+                File.Delete(destFile);
+                File.Copy(dataFilePath, destFile);
+            }
+
+            if(devMode)
+            {
+                if (SystemInfo.deviceType == DeviceType.Handheld)
+                {
+                    File.Delete(dataFilePath);
+                    CopyDB();
+                } 
+            }
+
             RefreshData();
         }
+    }
+
+    void CopyDB()
+    {
+        string srcFile = Path.Combine(Application.streamingAssetsPath, "game.dat");
+        WWW downloader = new WWW(srcFile);
+        while (!downloader.isDone)
+        {
+            // nothing to be done while downloader gets our db file
+        }
+
+        // then save to Application.persistentDataPath
+        File.WriteAllBytes(dataFilePath, downloader.bytes);
+        RefreshData();
     }
 }
