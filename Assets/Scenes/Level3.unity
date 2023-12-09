@@ -35185,7 +35185,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!212 &772262143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35273,6 +35273,7 @@ MonoBehaviour:
   bossHealth: {fileID: 1626780194}
   bossBullet: {fileID: 1987227277353428268, guid: a2e4fa945fd28544d984ddb9d427de6f, type: 3}
   delayBeforeFiring: 4
+  walkSpeed: 1
 --- !u!95 &772262146
 Animator:
   serializedVersion: 5
@@ -50159,7 +50160,7 @@ MonoBehaviour:
     m_Bits: 64
   leftBulletSpawnPos: {fileID: 437194040}
   rightBulletSpawnPos: {fileID: 1301388829}
-  leftBullet: {fileID: 1987227277353428268, guid: a2e4fa945fd28544d984ddb9d427de6f, type: 3}
+  leftBullet: {fileID: 1987227277353428268, guid: 2d6721a2f648a194a83fcaca3d171576, type: 3}
   rightBullet: {fileID: 1987227277353428268, guid: 602cb929eb1faad42a2b7924ec43fa4e, type: 3}
   SFXOn: 1
   canFire: 0

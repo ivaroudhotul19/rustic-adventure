@@ -5,47 +5,119 @@ using UnityEngine.UI;
 
 public class BossAI : MonoBehaviour
 {
-    
-    public float jumpSpeed;               
-    public int startJumpingAt;            
-    public int jumpDelay;                  
-    public int health;                    
-    public Slider bossHealth;               
-    public GameObject bossBullet;         
-    public float delayBeforeFiring;       
+    public float jumpSpeed;
+    public int startJumpingAt;
+    public int jumpDelay;
+    public int health;
+    public Slider bossHealth;
+    public GameObject bossBullet;
+    public float delayBeforeFiring;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
-    Vector3 bulletSpawnPos;                 
-    bool canFire, isJumping;            
+    Vector3 bulletSpawnPos;
+    Animator anim;
+    bool canFire, isJumping;
+    bool isWalking; // New variable to track walking state
+    public float walkSpeed; // Adjust the speed to your liking
 
-	void Start()
-	{
-		rb = GetComponent<Rigidbody2D>();
+    private const int diam = 0;
+    private const int berjalan = 1;
+    private const int menyerang = 2;
+    private const int menghindar = 3;
+    private const int mati = 4;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
         canFire = false;
+        isWalking = false;
 
         bulletSpawnPos = gameObject.transform.Find("BulletSpawnPos").transform.position;
 
         Invoke("Reload", Random.Range(1f, delayBeforeFiring));
-	}
+    }
 
-	void Update()
-	{
-        if(canFire)
+    void Update()
+    {
+        if (canFire)
         {
             FireBullets();
             canFire = false;
 
-            if(health < startJumpingAt && !isJumping)
+            if (health < startJumpingAt && !isJumping)
             {
                 InvokeRepeating("Jump", 0, jumpDelay);
                 isJumping = true;
             }
-        }
-	}
 
+            // Add walking logic here
+            if (!isJumping && !isWalking)
+            {
+                isWalking = true;
+                anim.SetInteger("State", berjalan);
+                // Use a coroutine for smooth walking animation
+                StartCoroutine(WalkToPlayer());
+            }
+        }
+        // Commented out this line so that the boss doesn't go to 'mati' state immediately
+        // anim.SetInteger("State", mati);
+    }
+
+    void FireBullets()
+    {
+        // Set the attack animation state
+        anim.SetInteger("State", menyerang);
+
+        Instantiate(bossBullet, bulletSpawnPos, Quaternion.identity);
+        Invoke("Reload", delayBeforeFiring);
+        // Delay to allow for the attack animation before resetting to other states
+        Invoke("ResetAnimationState", 0.1f);
+    }
+
+    void ResetAnimationState()
+    {
+        // Reset the animation state to walking after firing
+        if (!isJumping)
+        {
+            anim.SetInteger("State", berjalan);
+        }
+    }
+
+    IEnumerator WalkToPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+            while (distance > 0.1f)
+            {
+                // Determine the direction to the player
+                Vector2 direction = (player.transform.position - transform.position).normalized;
+
+                // Flip the sprite based on the direction
+                if (direction.x > 0)
+                    sr.flipX = false; // facing right
+                else if (direction.x < 0)
+                    sr.flipX = true;  // facing left
+
+                // Move towards the player
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, walkSpeed * Time.deltaTime);
+
+                // Update the distance for the next frame
+                distance = Vector2.Distance(transform.position, player.transform.position);
+
+                // Wait for the next frame
+                yield return null;
+            }
+        }
+
+        // Stop walking
+        isWalking = false;
+    }
 
     void Reload()
     {
@@ -54,15 +126,14 @@ public class BossAI : MonoBehaviour
 
     void Jump()
     {
+        // Set the jumping animation state
+        anim.SetInteger("State", menghindar);
+
+        // Delay before resetting to walking state
+        Invoke("ResetAnimationState", 0.5f);
+
         rb.AddForce(new Vector2(0, jumpSpeed));
     }
-
-	void FireBullets()
-	{
-        Instantiate(bossBullet, bulletSpawnPos, Quaternion.identity);
-
-        Invoke("Reload", delayBeforeFiring);
-	}
 
     void RestoreColor()
     {
@@ -73,12 +144,14 @@ public class BossAI : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Powerup_Bullet"))
         {
-            if(health == 0)
+            if (health == 0)
             {
-                GameCtrl.instance.BulletHitEnemy(gameObject.transform);
+                anim.SetInteger("State", mati);
+                // Delay before handling the enemy being hit
+                Invoke("HandleEnemyHit", 1.0f);
             }
 
-            if(health > 0)
+            if (health > 0)
             {
                 health--;
                 bossHealth.value = health;
@@ -88,5 +161,11 @@ public class BossAI : MonoBehaviour
                 Invoke("RestoreColor", 0.1f);
             }
         }
+    }
+
+    void HandleEnemyHit()
+    {
+        // Call a method to handle the enemy being hit
+        GameCtrl.instance.BulletHitEnemy(gameObject.transform);
     }
 }

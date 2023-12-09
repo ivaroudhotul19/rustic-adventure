@@ -13387,7 +13387,7 @@ MonoBehaviour:
     m_Bits: 64
   leftBulletSpawnPos: {fileID: 1558290129}
   rightBulletSpawnPos: {fileID: 663143756}
-  leftBullet: {fileID: 1987227277353428268, guid: a2e4fa945fd28544d984ddb9d427de6f, type: 3}
+  leftBullet: {fileID: 1987227277353428268, guid: 2d6721a2f648a194a83fcaca3d171576, type: 3}
   rightBullet: {fileID: 1987227277353428268, guid: 602cb929eb1faad42a2b7924ec43fa4e, type: 3}
   SFXOn: 1
   canFire: 0
@@ -24694,8 +24694,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 845223263}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: LoadCurrentScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

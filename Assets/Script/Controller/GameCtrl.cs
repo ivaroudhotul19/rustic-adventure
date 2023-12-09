@@ -463,7 +463,7 @@ public class GameCtrl : MonoBehaviour
     public void UnlockLevel(int levelNumber)
     {
         if((levelNumber+1) <= (data.levelData.Length-1))
-            data.levelData[levelNumber+1].isUnlocked = true;
+            data.levelData[(levelNumber+1)].isUnlocked = true;
     }
 
 
