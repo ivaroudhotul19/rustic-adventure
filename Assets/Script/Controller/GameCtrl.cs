@@ -10,6 +10,7 @@ public class GameCtrl : MonoBehaviour
 {
     public static GameCtrl instance;
     public float restartDelay;
+    [HideInInspector]
     public GameData data;
     public UI ui;
     public int coinValue;
@@ -19,6 +20,7 @@ public class GameCtrl : MonoBehaviour
     public GameObject levelCompleteMenu;
     public int shinningCoinValue;
     public int enemyValue;
+    bool isPaused;     
     public enum Item {
         Coin, ShinningCoin, Enemy
     }
@@ -56,6 +58,7 @@ public class GameCtrl : MonoBehaviour
         if(PlayerPrefs.HasKey("CPX")){
             PlayerPrefs.DeleteKey("CPX");
         }
+        isPaused = false;
     }
 
     void Update()
@@ -68,12 +71,18 @@ public class GameCtrl : MonoBehaviour
 
             PlayerPrefs.DeleteKey("CPX");
         }
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+        } else {
+            Time.timeScale = 1;
+        }
 
         if(Input.GetKeyDown(KeyCode.Escape)){
             ResetData();
         }
 
-        if(timeLeft > 0) {
+        if(timeLeft > 0 ) {
             UpdateTimer();
         }
     }
@@ -103,6 +112,7 @@ public class GameCtrl : MonoBehaviour
     void OnDisable() {
        // Debug.Log("Data Saved");
         SaveData();
+        Time.timeScale = 1;
     }
 
     void ResetData(){
@@ -497,6 +507,26 @@ public class GameCtrl : MonoBehaviour
     public void LevelComplete()
     {
         levelCompleteMenu.SetActive(true);
-        mobileUI.SetActive(false);
+            mobileUI.SetActive(false);
+    }
+
+    public void ShowPausePanel()
+    {
+        if (mobileUI.activeInHierarchy)
+            mobileUI.SetActive(false);
+        
+        ui.panelPause.SetActive(true);
+
+        isPaused = true;
+    }
+
+    public void HidePausePanel()
+    {
+        if (!mobileUI.activeInHierarchy)
+            mobileUI.SetActive(true);
+
+        ui.panelPause.SetActive(false);
+
+        isPaused = false;
     }
 }

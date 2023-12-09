@@ -22913,6 +22913,7 @@ MonoBehaviour:
     keyImage: {fileID: 0}
     keySprite: {fileID: 0}
     panelGameOver: {fileID: 0}
+    panelPause: {fileID: 0}
   data:
     coinCount: 0
     score: 0
@@ -35228,7 +35229,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b3d67ca462b69e24c9aefa3e5917ae32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3, y: 3}
@@ -72244,6 +72245,7 @@ MonoBehaviour:
     keyImage: {fileID: 964655625}
     keySprite: {fileID: 21300000, guid: eaed20cf762864746a5eb47dcc981a97, type: 3}
     panelGameOver: {fileID: 1235923140}
+    panelPause: {fileID: 0}
   coinValue: 1
   maxTime: 200
   textTimer: {fileID: 983726702}
