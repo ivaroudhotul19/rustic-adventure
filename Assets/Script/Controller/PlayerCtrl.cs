@@ -156,9 +156,9 @@ public class PlayerCtrl : MonoBehaviour
 		Jump ();
 	}
 	void OnCollisionEnter2D(Collision2D other) {
-		if (other.gameObject.CompareTag ("Ground")) {
-			isJumping = false;
-		}
+		// if (other.gameObject.CompareTag ("Ground")) {
+		// 	isJumping = false;
+		// }
 		if (other.gameObject.CompareTag ("Enemy")) {
 			GameCtrl.instance.PlayerDiedAnimation(gameObject);
 			AudioCtrl.instance.PlayerDied(gameObject.transform.position);

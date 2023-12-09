@@ -16,6 +16,7 @@ public class FeetCtrl : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Ground")){
             SFXCtrl.instance.ShowPalyerLanding(dustParticlePos.position);
+            playerCtrl.isJumping = false;
         }
         if (other.gameObject.CompareTag("Platform"))
         {

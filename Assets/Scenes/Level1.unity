@@ -4365,8 +4365,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.32814074, y: -0.003997091}
-  - {x: 0.29616642, y: -0.003997088}
+  - {x: -0.5670863, y: 0.0036102496}
+  - {x: 0.5736473, y: 0.0018618135}
+  - {x: 0.5736475, y: 0.0018620491}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -59748,6 +59749,14 @@ PrefabInstance:
     - target: {fileID: 5732089593137449068, guid: 3f67d33694788c24d893fdd2ca73e388, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396791093045398561, guid: 3f67d33694788c24d893fdd2ca73e388, type: 3}
+      propertyPath: m_Size.x
+      value: 3.306071
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396791093045398561, guid: 3f67d33694788c24d893fdd2ca73e388, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.14774692
       objectReference: {fileID: 0}
     - target: {fileID: 7652277602791026330, guid: 3f67d33694788c24d893fdd2ca73e388, type: 3}
       propertyPath: moveDistance

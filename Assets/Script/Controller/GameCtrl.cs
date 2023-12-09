@@ -485,6 +485,15 @@ public class GameCtrl : MonoBehaviour
         //UpdateScore(Item.Enemy);
     }
 
+    public void DecreaseLivesDuri(float amount)
+    {
+        double updatedLives = data.lives;
+        updatedLives -= 0.25;
+        data.lives = updatedLives;
+        UpdateHearts();
+    }
+
+
     public void LevelComplete()
     {
         levelCompleteMenu.SetActive(true);

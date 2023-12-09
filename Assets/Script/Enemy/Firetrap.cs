@@ -20,32 +20,22 @@ public class Firetrap : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
     }
 
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.tag == "Player")
-    //     {
-    //         if (!triggered) {
-    //             StartCoroutine(ActivateFiretrap());
-    //             playerInside = true;
-    //         }
-    //     }
-    // }
-private void OnTriggerEnter2D(Collider2D collision)
-{
-    if (collision.tag == "Player")
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!triggered) {
-            DecreaseLivesAndActivateFiretrap();
+        if (collision.tag == "Player")
+        {
+            if (!triggered) {
+                DecreaseLivesAndActivateFiretrap();
+            }
         }
     }
-}
 
-private void DecreaseLivesAndActivateFiretrap()
-{
-    GameCtrl.instance.DecreaseLivesFireTrap();
-    StartCoroutine(ActivateFiretrap());
-    playerInside = true;
-}
+    private void DecreaseLivesAndActivateFiretrap()
+    {
+        GameCtrl.instance.DecreaseLivesFireTrap();
+        StartCoroutine(ActivateFiretrap());
+        playerInside = true;
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -63,11 +53,8 @@ private void DecreaseLivesAndActivateFiretrap()
         }
     }
 
-
     
-    private IEnumerator ActivateFiretrap()
-    {
-
+    private IEnumerator ActivateFiretrap() {
         triggered = true;
         spriteRend.color = Color.red; 
 

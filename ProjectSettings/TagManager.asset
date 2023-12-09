@@ -17,6 +17,7 @@ TagManager:
   - EnemyHead
   - PlayerFeet
   - Barrier
+  - LevelOneBoss
   layers:
   - Default
   - TransparentFX
