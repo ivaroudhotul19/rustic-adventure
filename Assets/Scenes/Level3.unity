@@ -35184,7 +35184,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!212 &772262143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35272,6 +35272,7 @@ MonoBehaviour:
   bossHealth: {fileID: 1626780194}
   bossBullet: {fileID: 1987227277353428268, guid: a2e4fa945fd28544d984ddb9d427de6f, type: 3}
   delayBeforeFiring: 4
+  walkSpeed: 1
 --- !u!95 &772262146
 Animator:
   serializedVersion: 5
