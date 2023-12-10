@@ -13,4 +13,14 @@ public class Router : MonoBehaviour
     {
         GameCtrl.instance.HidePausePanel();
     }
+
+    public void ToggleSound()
+    {
+        AudioCtrl.instance.ToggleSound();
+    }
+
+    public void ToggleMusic()
+    {
+        AudioCtrl.instance.ToggleMusic();
+    }
 }

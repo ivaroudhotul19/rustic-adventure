@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioCtrl : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class AudioCtrl : MonoBehaviour
     public Transform player;
     public GameObject BGMusic;
     public bool bgMusicOn;
+    public GameObject btnSound, btnMusic; 
+    public Sprite imgSoundOn, imgSoundOff;
+    public Sprite imgMusicOn, imgMusicOff; 
 
     public bool soundOn;
     void Start()
@@ -17,8 +22,30 @@ public class AudioCtrl : MonoBehaviour
             instance = this;
         }
 
-        if(bgMusicOn) {
+        // if(bgMusicOn) {
+        //     BGMusic.SetActive(true);
+        // }
+
+        if(DataCtrl.instance.data.playMusic)
+        {
             BGMusic.SetActive(true);
+            btnMusic.GetComponent<Image>().sprite = imgMusicOn;
+        }
+        else
+        {
+            BGMusic.SetActive(false);
+            btnMusic.GetComponent<Image>().sprite = imgMusicOff;
+        }
+
+        if (DataCtrl.instance.data.playSound)
+        {
+            soundOn = true;
+            btnSound.GetComponent<Image>().sprite = imgSoundOn;
+        }
+        else
+        {
+            soundOn = false;
+            btnSound.GetComponent<Image>().sprite = imgSoundOff;
         }
     }
 
@@ -73,6 +100,55 @@ public class AudioCtrl : MonoBehaviour
     public void PlayerDied(Vector3 playerPos){
         if(soundOn) {
             AudioSource.PlayClipAtPoint(playerAudio.playerDied, playerPos);
+        }
+    }
+    public void ToggleSound()
+    {
+        if (DataCtrl.instance.data.playSound)
+        {
+            soundOn = false;
+
+            // set the music off image to the music button
+            btnSound.GetComponent<Image>().sprite = imgSoundOff;
+
+            // save the change to the database
+            DataCtrl.instance.data.playSound = false;
+        }
+        else
+        {
+            soundOn = true;
+
+            // set the music off image to the music button
+            btnSound.GetComponent<Image>().sprite = imgSoundOn;
+
+            // save the change to the database
+            DataCtrl.instance.data.playSound = true;
+        }
+    }
+
+     public void ToggleMusic()
+    {
+        if(DataCtrl.instance.data.playMusic)
+        {
+            // stop the BG Music
+            BGMusic.SetActive(false);
+
+            // set the music off image to the music button
+            btnMusic.GetComponent<Image>().sprite = imgMusicOff;
+
+            // save the change to the database
+            DataCtrl.instance.data.playMusic = false;
+        }
+        else
+        {
+            // stop the BG Music
+            BGMusic.SetActive(true);
+
+            // set the music off image to the music button
+            btnMusic.GetComponent<Image>().sprite = imgMusicOn;
+
+            // save the change to the database
+            DataCtrl.instance.data.playMusic = true;
         }
     }
 }

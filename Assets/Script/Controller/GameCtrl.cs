@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;    //untuk bekerja dengan file
 using System.Runtime.Serialization.Formatters.Binary; //untuk menyimpan data dalam format biner
+using DG.Tweening;
 
 public class GameCtrl : MonoBehaviour
 {
@@ -516,17 +517,27 @@ public class GameCtrl : MonoBehaviour
             mobileUI.SetActive(false);
         
         ui.panelPause.SetActive(true);
+         ui.panelPause.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f, false);
 
+        //isPaused = true;
+        Invoke("SetPause", 1.1f);
+    }
+
+    void SetPause()
+    {
+        // set the bool
         isPaused = true;
     }
 
     public void HidePausePanel()
     {
+        isPaused = false;
+
         if (!mobileUI.activeInHierarchy)
             mobileUI.SetActive(true);
 
         ui.panelPause.SetActive(false);
-
-        isPaused = false;
+        // animate the pause panel
+        ui.panelPause.gameObject.GetComponent<RectTransform>().DOAnchorPosY(600, 0.7f, false);
     }
 }
