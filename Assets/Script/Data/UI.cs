@@ -19,4 +19,5 @@ public class UI {
     public Sprite keySprite;
 
     public GameObject panelGameOver;
+    public GameObject panelPause;
 }
