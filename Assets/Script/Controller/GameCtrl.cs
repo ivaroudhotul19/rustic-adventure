@@ -508,7 +508,7 @@ public class GameCtrl : MonoBehaviour
     public void LevelComplete()
     {
         levelCompleteMenu.SetActive(true);
-            mobileUI.SetActive(false);
+        mobileUI.SetActive(false);
     }
 
     public void ShowPausePanel()

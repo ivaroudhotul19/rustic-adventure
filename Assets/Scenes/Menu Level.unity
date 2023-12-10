@@ -471,6 +471,8 @@ MonoBehaviour:
       isUnlocked: 0
       starsAwarded: 0
     keyFound: 0
+    playSound: 0
+    playMusic: 0
   devMode: 0
 --- !u!1 &272482189
 GameObject:

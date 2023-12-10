@@ -22927,6 +22927,8 @@ MonoBehaviour:
     isFirstBoot: 0
     levelData: []
     keyFound: 0
+    playSound: 0
+    playMusic: 0
 --- !u!61 &505869334
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32269,6 +32271,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8936125233878606985, guid: a334d9e322a97a34eab7ee4b9701003f, type: 3}
   m_PrefabInstance: {fileID: 707985499}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &708003332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708003333}
+  m_Layer: 0
+  m_Name: BulletSpawnPos
+  m_TagString: BossBullet
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &708003333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708003332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.54, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 772262144}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &708272734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35321,8 +35354,8 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1372716577}
   - {fileID: 1940073904}
+  - {fileID: 708003333}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35339,7 +35372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSpeed: 300
-  startJumpingAt: 5
+  startJumpingAt: 11
   jumpDelay: 1
   health: 10
   bossHealth: {fileID: 1626780194}
@@ -35347,7 +35380,7 @@ MonoBehaviour:
   bossBullet2: {fileID: 1987227277353428268, guid: b22620e451fc1c7458962be8f377d942, type: 3}
   delayBeforeFiring: 4
   walkSpeed: 1
-  bulletSpawnPos: {fileID: 1372716577}
+  bulletSpawnPos: {fileID: 708003333}
   bulletSpawnPosRight: {fileID: 1940073904}
 --- !u!95 &772262146
 Animator:
@@ -59483,7 +59516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1243741238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63700,7 +63733,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 2142773364}
           m_TargetAssemblyTypeName: MobileUIController, Assembly-CSharp
           m_MethodName: MobileFireBullets
           m_Mode: 1
@@ -67762,37 +67795,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1433189446
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1433189447}
-  m_Layer: 9
-  m_Name: leftBulletSpawnPos
-  m_TagString: Powerup_Bullet
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1433189447
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433189446}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 321.936, y: -1.99, z: 0}
-  m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1433867584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72573,6 +72575,8 @@ MonoBehaviour:
       isUnlocked: 1
       starsAwarded: 0
     keyFound: 0
+    playSound: 0
+    playMusic: 0
   ui:
     txtCoinCount: {fileID: 1705085897}
     txtScore: {fileID: 437423286}
@@ -87960,6 +87964,12 @@ MonoBehaviour:
   player: {fileID: 1064214738}
   BGMusic: {fileID: 1326463178}
   bgMusicOn: 1
+  btnSound: {fileID: 0}
+  btnMusic: {fileID: 0}
+  imgSoundOn: {fileID: 0}
+  imgSoundOff: {fileID: 0}
+  imgMusicOn: {fileID: 0}
+  imgMusicOff: {fileID: 0}
   soundOn: 1
 --- !u!1001 &1870004617
 PrefabInstance:
@@ -90668,7 +90678,7 @@ GameObject:
   - component: {fileID: 1940073904}
   m_Layer: 0
   m_Name: BulletSpawnPosRight
-  m_TagString: Untagged
+  m_TagString: BossBullet
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90686,7 +90696,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 772262144}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1940772301
 PrefabInstance:
@@ -99493,91 +99503,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1064214737}
---- !u!1001 &675421468423194299
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 675421467785973319, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_Name
-      value: Dino
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973690, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: bossHealth
-      value: 
-      objectReference: {fileID: 1626780194}
-    - target: {fileID: 675421467785973690, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: startJumpingAt
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 333.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421467785973691, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421469225285787, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 675421469225285787, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4458412232997471067, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_TagString
-      value: LevelOneBoss
-      objectReference: {fileID: 0}
-    - target: {fileID: 5560315814506282780, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 5560315814506282780, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.24
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: aa388625c7ebffa4d82974c4b4185a55, type: 3}
 --- !u!1001 &5616369256934036473
 PrefabInstance:
   m_ObjectHideFlags: 0

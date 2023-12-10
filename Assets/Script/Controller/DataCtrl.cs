@@ -67,6 +67,9 @@ public class DataCtrl : MonoBehaviour
             }
         }
 
+        data.playMusic = true;
+        data.playSound = true;
+
         // save data
         FileStream fs = new FileStream(dataFilePath, FileMode.Create);
         bf.Serialize(fs, data);

@@ -1492,7 +1492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &50585886
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9188,7 +9188,7 @@ MonoBehaviour:
   maxTime: 300
   textTimer: {fileID: 824416958}
   shinningCoin: {fileID: 3103767210384849409, guid: 2b168814c43044449ad798792cec9b4e, type: 3}
-  levelCompleteMenu: {fileID: 162892944}
+  levelCompleteMenu: {fileID: 1399345087}
   shinningCoinValue: 10
   enemyValue: 50
   mobileUI: {fileID: 59248872}

@@ -44,16 +44,18 @@ public class BossAI : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))  // Change "Fire1" to your input button
+        {
+            // Trigger jumping when the player shoots
+            if (!isJumping)
+            {
+                Jump();
+            }
+        }
         if (canFire)
         {
             FireBullets();
             canFire = false;
-
-            if (health < startJumpingAt && !isJumping)
-            {
-                InvokeRepeating("Jump", 0, jumpDelay);
-                isJumping = true;
-            }
 
             // Add walking logic here with a distance check
             if (!isJumping && !isWalking)

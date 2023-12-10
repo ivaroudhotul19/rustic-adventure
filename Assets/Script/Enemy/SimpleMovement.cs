@@ -192,10 +192,10 @@ public class SimpleMovement : MonoBehaviour
         {
             // Handle collision with power-up bullet if needed
         } 
-        // else if (other.gameObject.CompareTag("Player"))
-        // {
-        //     gameCtrl.ReducePlayerHealthJamur();
-        // }
+        else if (other.gameObject.CompareTag("Player"))
+        {
+            gameCtrl.ReducePlayerHealthJamur();
+        }
         else if (other.gameObject.CompareTag("Water"))
         {
             // Handle collision with water
