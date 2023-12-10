@@ -432,12 +432,12 @@ public class GameCtrl : MonoBehaviour
 
         ui.keyImage.sprite = ui.keySprite;
         if(data.keyFound) {
-        GameObject[] finishObjectsArray = GameObject.FindGameObjectsWithTag("Finish");
+            GameObject[] finishObjectsArray = GameObject.FindGameObjectsWithTag("Finish");
 
-        foreach (GameObject finish in finishObjectsArray) {
-            Destroy(finish);
+            foreach (GameObject finish in finishObjectsArray) {
+                Destroy(finish);
+            }
         }
-    }
     }
 
     public int GetScore(){

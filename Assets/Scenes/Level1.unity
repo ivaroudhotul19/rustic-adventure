@@ -8864,7 +8864,10 @@ MonoBehaviour:
       isUnlocked: 1
       starsAwarded: 0
     - levelNumber: 2
-      isUnlocked: 1
+      isUnlocked: 0
+      starsAwarded: 0
+    - levelNumber: 3
+      isUnlocked: 0
       starsAwarded: 0
     keyFound: 0
   ui:

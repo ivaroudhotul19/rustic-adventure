@@ -42,6 +42,39 @@ public class DataCtrl : MonoBehaviour
         }
     }
 
+    public void ResetData()
+    {
+        if(File.Exists(dataFilePath))
+        {
+            File.Delete(dataFilePath);
+            Debug.Log("Data Resetted");
+        }
+
+        // set data to default
+        data = new GameData();
+        data.levelData = new LevelData[4];
+
+        for (int i = 0; i < data.levelData.Length; i++)
+        {
+            if(i == 1) {
+                data.levelData[i] = new LevelData();
+                data.levelData[i].isUnlocked = true;
+                data.levelData[i].starsAwarded = 0;
+            } else {
+                data.levelData[i] = new LevelData();
+                data.levelData[i].isUnlocked = false;
+                data.levelData[i].starsAwarded = 0;
+            }
+        }
+
+        // save data
+        FileStream fs = new FileStream(dataFilePath, FileMode.Create);
+        bf.Serialize(fs, data);
+        fs.Close();
+        
+
+    }
+
     public bool isUnlocked(int levelNumber) {
         return data.levelData[levelNumber].isUnlocked;
     }

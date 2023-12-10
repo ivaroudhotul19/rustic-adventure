@@ -11,15 +11,18 @@ public class BossAI : MonoBehaviour
     public int health;
     public Slider bossHealth;
     public GameObject bossBullet;
+    public GameObject bossBullet2;
     public float delayBeforeFiring;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
-    Vector3 bulletSpawnPos;
+    // Vector3 bulletSpawnPos;
     Animator anim;
     bool canFire, isJumping;
     bool isWalking; // New variable to track walking state
     public float walkSpeed; // Adjust the speed to your liking
+
+    public Transform bulletSpawnPos, bulletSpawnPosRight;
 
     private const int diam = 0;
     private const int berjalan = 1;
@@ -35,8 +38,6 @@ public class BossAI : MonoBehaviour
 
         canFire = false;
         isWalking = false;
-
-        bulletSpawnPos = gameObject.transform.Find("BulletSpawnPos").transform.position;
 
         Invoke("Reload", Random.Range(1f, delayBeforeFiring));
     }
@@ -54,25 +55,40 @@ public class BossAI : MonoBehaviour
                 isJumping = true;
             }
 
-            // Add walking logic here
+            // Add walking logic here with a distance check
             if (!isJumping && !isWalking)
             {
-                isWalking = true;
-                anim.SetInteger("State", berjalan);
-                // Use a coroutine for smooth walking animation
-                StartCoroutine(WalkToPlayer());
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    float distance = Vector2.Distance(transform.position, player.transform.position);
+
+                    Debug.Log("Distance: " + distance);
+
+                    // Adjust the threshold distance as needed
+                    if (distance < 5.0f)
+                    {
+                        isWalking = true;
+                        anim.SetInteger("State", berjalan);
+                        // Use a coroutine for smooth walking animation
+                        StartCoroutine(WalkToPlayer());
+                    }
+                }
             }
         }
-        // Commented out this line so that the boss doesn't go to 'mati' state immediately
-        // anim.SetInteger("State", mati);
     }
+
 
     void FireBullets()
     {
         // Set the attack animation state
         anim.SetInteger("State", menyerang);
 
-        Instantiate(bossBullet, bulletSpawnPos, Quaternion.identity);
+        if (sr.flipX) {
+            Instantiate(bossBullet, bulletSpawnPosRight.position, Quaternion.identity);
+        } else if (!sr.flipX) {
+            Instantiate(bossBullet2, bulletSpawnPos.position, Quaternion.identity);
+        }
         Invoke("Reload", delayBeforeFiring);
         // Delay to allow for the attack animation before resetting to other states
         Invoke("ResetAnimationState", 0.1f);
@@ -83,7 +99,7 @@ public class BossAI : MonoBehaviour
         // Reset the animation state to walking after firing
         if (!isJumping)
         {
-            anim.SetInteger("State", berjalan);
+            anim.SetInteger("State", diam);
         }
     }
 

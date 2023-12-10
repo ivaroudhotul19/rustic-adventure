@@ -18,6 +18,8 @@ TagManager:
   - PlayerFeet
   - Barrier
   - LevelOneBoss
+  - BossBullet
+  - Gate
   layers:
   - Default
   - TransparentFX
