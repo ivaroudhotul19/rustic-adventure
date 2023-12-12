@@ -184,6 +184,6 @@ public class BossAI : MonoBehaviour
     void HandleEnemyHit()
     {
         // Call a method to handle the enemy being hit
-        GameCtrl.instance.BulletHitEnemy(gameObject.transform);
+        GameCtrl.instance.ShowHarmonyKey(gameObject.transform);
     }
 }

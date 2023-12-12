@@ -18,6 +18,7 @@ public class GameCtrl : MonoBehaviour
     public float maxTime;
     public Text textTimer;
     public GameObject shinningCoin;
+    public GameObject harmonyKey;
     public GameObject levelCompleteMenu;
     public int shinningCoinValue;
     public int enemyValue;
@@ -274,6 +275,17 @@ public class GameCtrl : MonoBehaviour
         AudioCtrl.instance.EnemyExplosion(pos);
     }
 
+    public void ShowHarmonyKey(Transform enemy){
+        Vector3 pos = enemy.position;
+        pos.z = 20f;
+        SFXCtrl.instance.EnemyExplosion(pos);
+
+        Instantiate(harmonyKey, pos, Quaternion.identity);
+        Destroy(enemy.gameObject);
+
+        AudioCtrl.instance.EnemyExplosion(pos);
+    }
+
     IEnumerator RestartLevel(){
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Level1");
@@ -470,6 +482,7 @@ public class GameCtrl : MonoBehaviour
 
     void GameOver(){
         ui.panelGameOver.SetActive(true);
+        mobileUI.SetActive(false);
 
         // Menonaktifkan skrip PlayerCtrl pada pemain
         player.GetComponent<PlayerCtrl>().enabled = false;

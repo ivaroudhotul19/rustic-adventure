@@ -20,6 +20,7 @@ TagManager:
   - LevelOneBoss
   - BossBullet
   - Gate
+  - HarmonyKey
   layers:
   - Default
   - TransparentFX
