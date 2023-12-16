@@ -43,7 +43,8 @@ public class SimpleMovement : MonoBehaviour
     {
         if (currentHealth == 0)
         {
-            StartCoroutine(DelayedBulletHitEnemy());
+            Invoke("DelayedBulletHitEnemy", 0.1f);
+            //StartCoroutine(DelayedBulletHitEnemy());
         }
         else if (currentHealth == 1)
         {

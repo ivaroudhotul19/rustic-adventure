@@ -221,22 +221,21 @@ public class GameCtrl : MonoBehaviour
     {
         Invoke("RespawnPlayer", restartDelay);
     }
+    public void PlayerStompsEnemy(GameObject enemy) {
+        enemy.tag = "Untagged";
+        Destroy(enemy);
+    }
 
     public void updateCoinCount(){
-
         data.coinCount += 1;
         ui.txtCoinCount.text = " x " + data.coinCount;
-        //updateScore(coinValue);
     }
 
     public void updateCoinCount1(){
-
         data.coinCount -= 1;
         ui.txtCoinCount.text = " x " + data.coinCount;
-        //updateScore(coinValue);
     }
     public void updateScore1(){
-
         data.score -= 1;
         ui.txtScore.text = "Score : " + data.score;
     }
@@ -244,35 +243,39 @@ public class GameCtrl : MonoBehaviour
     public void updateScore(Item item){
         int itemValue = 0;
 
-
         switch (item) {
             case Item.ShinningCoin:
                 itemValue = shinningCoinValue;
+                Debug.Log("ShinningCoinValue: " + itemValue);
                 break;
             case Item.Coin:
                 itemValue = coinValue;
+                Debug.Log("CoinValue: " + itemValue);
                 break;
             case Item.Enemy:
                 itemValue = enemyValue;
+                Debug.Log("EnemyValue: " + itemValue);
                 break;
             default:
                 break;
         }
-        //data.score += value;
         data.score += itemValue;
         ui.txtScore.text = "Score : " + data.score;
     }
+
 
     public void BulletHitEnemy(Transform enemy){
         Vector3 pos = enemy.position;
         pos.z = 20f;
         SFXCtrl.instance.EnemyExplosion(pos);
 
-        //menampilkan koin
+        //menampilkan shinning  koin
         Instantiate(shinningCoin, pos, Quaternion.identity);
         Destroy(enemy.gameObject);
 
         AudioCtrl.instance.EnemyExplosion(pos);
+        updateScore(Item.Enemy);
+        //updateScore(Item.ShinningCoin);
     }
 
     public void ShowHarmonyKey(Transform enemy){
@@ -502,12 +505,7 @@ public class GameCtrl : MonoBehaviour
        Camera.main.GetComponent<CameraCtrl>().enabled = false;
         
     }
-    public void PlayerStompsEnemy(GameObject enemy)
-    {
-        enemy.tag = "Enemy";
-        Destroy(enemy);
-        //UpdateScore(Item.Enemy);
-    }
+   
 
     public void DecreaseLivesDuri(float amount)
     {

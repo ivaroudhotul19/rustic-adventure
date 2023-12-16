@@ -2582,7 +2582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -120, y: 120}
+  m_AnchoredPosition: {x: -250, y: 120}
   m_SizeDelta: {x: 129, y: 129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73791929
@@ -51680,7 +51680,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -400, y: 120}
+  m_AnchoredPosition: {x: -500, y: 120}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1347109642
@@ -59206,6 +59206,7 @@ MonoBehaviour:
   levelCompleteMenu: {fileID: 809165882}
   shinningCoinValue: 10
   enemyValue: 50
+  shinningCoinCollected: 0
   mobileUI: {fileID: 1243741237}
 --- !u!1001 &1531503386
 PrefabInstance:
@@ -64240,7 +64241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 400, y: 120}
+  m_AnchoredPosition: {x: 550, y: 120}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662633527
@@ -70790,7 +70791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 120}
+  m_AnchoredPosition: {x: 250, y: 120}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1811633301
@@ -72975,12 +72976,12 @@ MonoBehaviour:
   player: {fileID: 1064214738}
   BGMusic: {fileID: 1326463178}
   bgMusicOn: 1
-  btnSound: {fileID: 0}
-  btnMusic: {fileID: 0}
-  imgSoundOn: {fileID: 0}
-  imgSoundOff: {fileID: 0}
-  imgMusicOn: {fileID: 0}
-  imgMusicOff: {fileID: 0}
+  btnSound: {fileID: 927690069}
+  btnMusic: {fileID: 979856876}
+  imgSoundOn: {fileID: 21300000, guid: 0062d60f6677f0243a59a40833554b8f, type: 3}
+  imgSoundOff: {fileID: 21300000, guid: 08d05d15b889b39449c87ca830f08c74, type: 3}
+  imgMusicOn: {fileID: 21300000, guid: be9b25046913ed74196bddc5e421a629, type: 3}
+  imgMusicOff: {fileID: 21300000, guid: 060060199f0fa6242b974c2d6df66732, type: 3}
   soundOn: 1
 --- !u!1001 &1868129077
 PrefabInstance:

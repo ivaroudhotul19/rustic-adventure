@@ -156,9 +156,6 @@ public class PlayerCtrl : MonoBehaviour
 		Jump ();
 	}
 	void OnCollisionEnter2D(Collision2D other) {
-		// if (other.gameObject.CompareTag ("Ground")) {
-		// 	isJumping = false;
-		// }
 		if (other.gameObject.CompareTag ("Enemy")) {
 			GameCtrl.instance.PlayerDiedAnimation(gameObject);
 			AudioCtrl.instance.PlayerDied(gameObject.transform.position);
@@ -166,8 +163,15 @@ public class PlayerCtrl : MonoBehaviour
 		if (other.gameObject.CompareTag ("ShinningCoin")) {
 			GameCtrl.instance.updateCoinCount();
 			SFXCtrl.instance.ShowBulletSparkle(other.gameObject.transform.position);
-			GameCtrl.instance.updateScore(GameCtrl.Item.ShinningCoin);
 			Destroy(other.gameObject);
+			GameCtrl.instance.updateScore(GameCtrl.Item.ShinningCoin);
+			AudioCtrl.instance.CoinPickup(gameObject.transform.position);
+		}
+		if (other.gameObject.CompareTag ("HarmonyKey")) {
+			//GameCtrl.instance.updateCoinCount();
+			SFXCtrl.instance.ShowBulletSparkle(other.gameObject.transform.position);
+			Destroy(other.gameObject);
+			//GameCtrl.instance.updateScore(GameCtrl.Item.HarmonyKey);
 			AudioCtrl.instance.CoinPickup(gameObject.transform.position);
 		}
 
@@ -177,12 +181,13 @@ public class PlayerCtrl : MonoBehaviour
 		switch (other.gameObject.tag) {
 			case "Coin":
 				if (SFXOn){
-					GameCtrl.instance.updateCoinCount();
 					SFXCtrl.instance.ShowCoinSparkle(other.gameObject.transform.position);
-					GameCtrl.instance.updateScore(GameCtrl.Item.Coin);
-					Destroy(other.gameObject);
-					AudioCtrl.instance.CoinPickup(gameObject.transform.position);
 				}
+				GameCtrl.instance.updateCoinCount();
+				GameCtrl.instance.updateScore(GameCtrl.Item.Coin);
+				AudioCtrl.instance.CoinPickup(gameObject.transform.position);
+				//Destroy(other.gameObject);
+				
 				break;
 			case "Water":
 				SFXCtrl.instance.ShowSplash(other.gameObject.transform.position);

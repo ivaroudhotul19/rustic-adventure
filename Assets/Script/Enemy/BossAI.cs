@@ -13,7 +13,7 @@ public class BossAI : MonoBehaviour
     public GameObject bossBullet;
     public GameObject bossBullet2;
     public float delayBeforeFiring;
-
+    
     Rigidbody2D rb;
     SpriteRenderer sr;
     // Vector3 bulletSpawnPos;

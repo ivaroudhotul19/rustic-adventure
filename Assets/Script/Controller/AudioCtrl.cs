@@ -107,21 +107,14 @@ public class AudioCtrl : MonoBehaviour
         if (DataCtrl.instance.data.playSound)
         {
             soundOn = false;
-
-            // set the music off image to the music button
             btnSound.GetComponent<Image>().sprite = imgSoundOff;
 
-            // save the change to the database
             DataCtrl.instance.data.playSound = false;
         }
         else
         {
             soundOn = true;
-
-            // set the music off image to the music button
             btnSound.GetComponent<Image>().sprite = imgSoundOn;
-
-            // save the change to the database
             DataCtrl.instance.data.playSound = true;
         }
     }

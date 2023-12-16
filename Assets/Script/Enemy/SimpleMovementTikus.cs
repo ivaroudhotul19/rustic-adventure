@@ -43,7 +43,8 @@ public class SimpleMovementTikus : MonoBehaviour
     {
         if (currentHealth == 0)
         {
-            StartCoroutine(DelayedBulletHitEnemy());
+            //StartCoroutine(DelayedBulletHitEnemy());
+            Invoke("DelayedBulletHitEnemy", 0.1f);
         }
         else if (currentHealth == 1)
         {
