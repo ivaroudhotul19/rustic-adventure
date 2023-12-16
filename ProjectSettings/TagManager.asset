@@ -22,6 +22,7 @@ TagManager:
   - Gate
   - HarmonyKey
   - GateEnding
+  - People
   layers:
   - Default
   - TransparentFX
