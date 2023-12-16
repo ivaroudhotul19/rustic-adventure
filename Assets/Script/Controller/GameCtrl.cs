@@ -125,6 +125,8 @@ public class GameCtrl : MonoBehaviour
         data.score = 0;
         ui.txtScore.text = "Score : " + data.score;
         data.lives = 5;
+        data.keyFound = false;
+        data.harmonyKeyFound = false;
         UpdateHearts();
          // Reset Level Data
         // foreach (LevelData level in data.levelData)
@@ -550,5 +552,24 @@ public class GameCtrl : MonoBehaviour
         ui.panelPause.SetActive(false);
         // animate the pause panel
         ui.panelPause.gameObject.GetComponent<RectTransform>().DOAnchorPosY(600, 0.7f, false);
+    }
+
+    public void OpenEnding(){
+        data.harmonyKeyFound = true;
+        Debug.Log("harmony key found");
+
+        if(data.harmonyKeyFound) {
+            GameObject[] gateEndingObjectsArray = GameObject.FindGameObjectsWithTag("GateEnding");
+
+            foreach (GameObject gateEnding in gateEndingObjectsArray) {
+                Destroy(gateEnding);
+            }
+
+            mobileUI.SetActive(false);
+        }
+    }
+
+    public bool checkHarmonyKey(){
+        return data.harmonyKeyFound;
     }
 }

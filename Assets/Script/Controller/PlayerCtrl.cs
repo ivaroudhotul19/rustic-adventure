@@ -24,6 +24,10 @@ public class PlayerCtrl : MonoBehaviour
 	Animator anim;
 	public bool isJumping, canDoubleJump;
 	bool leftPressed, rightPressed;
+	public Transform targetPeople;
+	public float speed;
+
+	public bool isFoundPeople = false;
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -58,6 +62,10 @@ public class PlayerCtrl : MonoBehaviour
 	
 		if (rightPressed)
 			MoveHorizontal (speedBoots);
+
+		if(GameCtrl.instance.checkHarmonyKey() && !isFoundPeople) {
+			MoveToPeople();
+		}
 	}
 
 	void OnDrawGizmos(){
@@ -168,13 +176,34 @@ public class PlayerCtrl : MonoBehaviour
 			AudioCtrl.instance.CoinPickup(gameObject.transform.position);
 		}
 		if (other.gameObject.CompareTag ("HarmonyKey")) {
-			//GameCtrl.instance.updateCoinCount();
 			SFXCtrl.instance.ShowBulletSparkle(other.gameObject.transform.position);
 			Destroy(other.gameObject);
 			//GameCtrl.instance.updateScore(GameCtrl.Item.HarmonyKey);
 			AudioCtrl.instance.CoinPickup(gameObject.transform.position);
+			GameCtrl.instance.OpenEnding();
 		}
 
+	}
+
+	public void MoveToPeople() {
+		// Hitung arah dan jarak antara pemain dan targetPeople.
+		Vector3 direction = targetPeople.position - transform.position;
+		float distance = direction.magnitude;
+
+		// Normalisasi arah untuk mendapatkan vektor arah.
+		Vector3 normalizedDirection = direction / distance;
+
+		// Pemain bergerak ke arah targetPeople.
+		rb.velocity = new Vector2(normalizedDirection.x * speed, rb.velocity.y);
+		anim.SetInteger("State", 1);
+
+		// Tetapkan arah karakter sesuai dengan perubahan arah
+		sr.flipX = normalizedDirection.x < 0;
+		Debug.Log("Distance: " + distance);
+		
+		if (distance < 1.5) {
+			isFoundPeople = true;
+		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {

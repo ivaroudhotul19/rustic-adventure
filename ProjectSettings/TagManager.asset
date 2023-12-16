@@ -21,6 +21,7 @@ TagManager:
   - BossBullet
   - Gate
   - HarmonyKey
+  - GateEnding
   layers:
   - Default
   - TransparentFX

@@ -15,4 +15,6 @@ public class GameData
 
   public bool playSound;       
   public bool playMusic;
+
+  public bool harmonyKeyFound;
 }
