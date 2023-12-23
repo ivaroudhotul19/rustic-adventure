@@ -21,21 +21,19 @@ public class AudioCtrl : MonoBehaviour
         if(instance == null) {
             instance = this;
         }
-
-        // if(bgMusicOn) {
-        //     BGMusic.SetActive(true);
-        // }
-
-        if(DataCtrl.instance.data.playMusic)
+     
+        if (DataCtrl.instance.data.playMusic)
         {
             BGMusic.SetActive(true);
             btnMusic.GetComponent<Image>().sprite = imgMusicOn;
+           
         }
         else
         {
             BGMusic.SetActive(false);
             btnMusic.GetComponent<Image>().sprite = imgMusicOff;
         }
+
 
         if (DataCtrl.instance.data.playSound)
         {

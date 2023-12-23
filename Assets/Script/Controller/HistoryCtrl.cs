@@ -12,6 +12,6 @@ public class HistoryCtrl : MonoBehaviour
     }
 
     private void Start() {
-        textWriter.AddWriter(text, "Dalam dunia yang indah, pemain memulai petualangan sebagai Rustic, seekor rubah oranye dengan bulu yang lebat, yang tinggal di desa yang mengalami ketidakseimbangan alam akibat ulah para monster. Pemain merasa panggilan alam untuk memulihkan keseimbangan dan memulai perjalanan mencari Kunci Harmoni di hutan misterius. Di Level 1, Rustic harus menghindari musuh seperti Mushmaw dan Rat rogue sambil mengumpulkan Coin Harmony. Level 2 membawa Rustic ke lembah misterius dengan rintangan dan musuh yang lebih kuat, termasuk Spikyfoe. Akhirnya, Rustic tiba di Pegunungan Harmony dalam Level 3, menghadapi musuh terkuat, Dino, untuk mendapatkan Kunci Harmony. Pesan cerita ini mengingatkan pemain tentang pentingnya menjaga keseimbangan alam dan lingkungan.", .1f, true);
+        textWriter.AddWriter(text, "Ruvy, rubah oranye dengan bulu lebat, menjalani petualangan untuk mengembalikan keseimbangan alam di desa yang terancam oleh para monster. Pemain mengikuti Ruvy melalui Hutan Perdamaian, menghindari musuh jamur dan tikus sambil mengumpulkan kunci permainan. Setelah hutan, Ruvy melewati lembah misterius dengan rintangan yang lebih rumit dan musuh lebih kuat, seperti landak berduri. Perjalanan mencapai puncak di Pegunungan Harmony, di mana Ruvy menghadapi musuh terkuat, Dino. Pemain membantu Ruvy mengumpulkan Coin Harmony dan melawan Dino untuk mendapatkan Kunci Harmony, mengakhiri petualangan epik ini.", .1f, true);
     }  
 }

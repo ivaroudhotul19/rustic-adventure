@@ -26,9 +26,7 @@ public class GameCtrl : MonoBehaviour
     public enum Item {
         Coin, ShinningCoin, Enemy
     }
-
     public GameObject mobileUI;
-
     string dataFilePath;
     BinaryFormatter bf;
     float timeLeft;
@@ -128,13 +126,6 @@ public class GameCtrl : MonoBehaviour
         data.keyFound = false;
         data.harmonyKeyFound = false;
         UpdateHearts();
-         // Reset Level Data
-        // foreach (LevelData level in data.levelData)
-        // {
-        //     level.starsAwarded = 0;
-        //     if (level.levelNumber != 1)
-        //         level.isUnlocked = false;
-        // }
         bf.Serialize(fs,data);
         fs.Close();
         Debug.Log("Data Reset");

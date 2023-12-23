@@ -407,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockedBtn: {fileID: 21300000, guid: 6f874fca66658d8459e28510cb829798, type: 3}
   unlockedBtn: {fileID: 21300000, guid: 49fd87a5c022d504f960393ba8005430, type: 3}
-  sceneName: Level2
+  sceneName: StartLevel2
 --- !u!1 &238374856
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +473,7 @@ MonoBehaviour:
     keyFound: 0
     playSound: 0
     playMusic: 0
+    harmonyKeyFound: 0
   devMode: 0
 --- !u!1 &272482189
 GameObject:
@@ -1752,7 +1753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockedBtn: {fileID: 21300000, guid: 6f874fca66658d8459e28510cb829798, type: 3}
   unlockedBtn: {fileID: 21300000, guid: 49fd87a5c022d504f960393ba8005430, type: 3}
-  sceneName: Level1
+  sceneName: StartLevel1
 --- !u!1 &958626788
 GameObject:
   m_ObjectHideFlags: 0

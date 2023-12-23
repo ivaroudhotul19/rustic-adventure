@@ -7,7 +7,7 @@ public class ButtonCtrl : MonoBehaviour
     public ButtonAction buttonAction; // Enum untuk menentukan tindakan tombol
     public string sceneName; // Nama scene yang akan dipindahkan
 
-    public enum ButtonAction // Perbaiki deklarasi enum
+    public enum ButtonAction 
     {
         LoadScene,
         ExitGame

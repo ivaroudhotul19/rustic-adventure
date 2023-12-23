@@ -93,7 +93,7 @@ public class LevelCompleteCtrl : MonoBehaviour
             btnNext.interactable = true;
             SFXCtrl.instance.ShowBulletSparkle(btnNext.gameObject.transform.position);
             AudioCtrl.instance.KeyFound(btnNext.gameObject.transform.position);
-            GameCtrl.instance.UnlockLevel(levelNumber + 1);
+            GameCtrl.instance.UnlockLevel(levelNumber);
         }
         else
         {

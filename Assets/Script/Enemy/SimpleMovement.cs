@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleMovement : MonoBehaviour
 {
+    public GameObject FloatingText;
     public float maxHealth;
     private float currentHealth;
     private GameCtrl gameCtrl;
@@ -125,9 +126,16 @@ public class SimpleMovement : MonoBehaviour
     {
         anim.SetInteger("State", mati);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5f);
         GameCtrl.instance.BulletHitEnemy(transform);
+        ShowFloatingText();
     }
+
+    void ShowFloatingText(){
+         Debug.Log("Floating Text Shown");
+        Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+    }
+
 
     IEnumerator ChasePlayer()
     {
