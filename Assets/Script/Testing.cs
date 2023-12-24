@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using.CodeMonkey.Utils;
 
 public class Testing : MonoBehaviour
 {
-    [SerializeField] private Transform FloatingText;
+
     void Start()
     {
-        Transform poinPopupTransform = Instantiate(FloatingText, Vector3.zero, Quaternion.identity);
-        PoinPopup poinPopup = poinPopupTransform.GetComponent<PoinPopup>();
-        poinPopup.Setup(300);
+        //PoinPopup.Create(Vector3.zero, 300);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update(){
+        if(Input.GetMouseButtonDown(0)) {
+            PoinPopup.Create(UtilsClass.GetMouseWorldPosition(), 100);
+        }
     }
+
 }

@@ -9634,6 +9634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 300070369}
   - component: {fileID: 300070370}
+  - component: {fileID: 300070371}
   m_Layer: 0
   m_Name: GameCtrl
   m_TagString: Untagged
@@ -9719,6 +9720,19 @@ MonoBehaviour:
   shinningCoinValue: 10
   enemyValue: 10
   mobileUI: {fileID: 59248872}
+--- !u!114 &300070371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300070368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd6a1478be064f4cbb21c24647be9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 1735740579936933236, guid: 0827545733e0c024f9664e661218567e, type: 3}
 --- !u!1001 &300286263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14582,6 +14596,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3550119623580581020, guid: d870633a6d9e12a45b806e820b2f24c5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4919835769556931556, guid: d870633a6d9e12a45b806e820b2f24c5, type: 3}
       propertyPath: m_Name
       value: Ruvy
@@ -29856,12 +29874,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2568777120693445554, guid: 0827545733e0c024f9664e661218567e, type: 3}
   m_PrefabInstance: {fileID: 8957289415925684840}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &953639256 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1735740579936933236, guid: 0827545733e0c024f9664e661218567e, type: 3}
-  m_PrefabInstance: {fileID: 8957289415925684840}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &953639257
+--- !u!114 &953639260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62238,12 +62251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2568777120693445554, guid: 0827545733e0c024f9664e661218567e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3699567046785487274, guid: 0827545733e0c024f9664e661218567e, type: 3}
-      propertyPath: FloatingText
-      value: 
-      objectReference: {fileID: 953639256}
-    m_RemovedComponents:
-    - {fileID: 3699567046785487274, guid: 0827545733e0c024f9664e661218567e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0827545733e0c024f9664e661218567e, type: 3}
