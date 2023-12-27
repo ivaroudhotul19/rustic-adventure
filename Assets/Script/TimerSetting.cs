@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TimerSetting : MonoBehaviour
 {
-    [SerializeField]
-    private float timerDuration;
+    [SerializeField] private float timerDuration;
 
     private float timer; // Timer yang berjalan
     public string sceneName;     

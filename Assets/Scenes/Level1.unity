@@ -9634,7 +9634,6 @@ GameObject:
   m_Component:
   - component: {fileID: 300070369}
   - component: {fileID: 300070370}
-  - component: {fileID: 300070371}
   m_Layer: 0
   m_Name: GameCtrl
   m_TagString: Untagged
@@ -9720,19 +9719,6 @@ MonoBehaviour:
   shinningCoinValue: 10
   enemyValue: 10
   mobileUI: {fileID: 59248872}
---- !u!114 &300070371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300070368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd6a1478be064f4cbb21c24647be9c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FloatingTextPrefab: {fileID: 1735740579936933236, guid: 0827545733e0c024f9664e661218567e, type: 3}
 --- !u!1001 &300286263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29869,23 +29855,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3371e9ae5d081dd448b4a3287367ef75, type: 3}
---- !u!1 &953639253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2568777120693445554, guid: 0827545733e0c024f9664e661218567e, type: 3}
-  m_PrefabInstance: {fileID: 8957289415925684840}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &953639260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953639253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4532615b9c3dcba43a50919d7ecbda17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &955608249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62251,7 +62220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2568777120693445554, guid: 0827545733e0c024f9664e661218567e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0827545733e0c024f9664e661218567e, type: 3}

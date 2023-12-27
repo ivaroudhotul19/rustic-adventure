@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartLevel2 : MonoBehaviour
+public class StartLevel3 : MonoBehaviour
 {
-    [SerializeField] private TextWriter textWriter; //untuk menampilkan variabel di inspector
+    [SerializeField] private TextWriter textWriter;
     private Text text;
     private void Awake() {
         text = transform.Find("message").Find("text").GetComponent<Text>();
