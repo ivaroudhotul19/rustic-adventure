@@ -6,8 +6,8 @@ using TMPro;
 public class PoinPopup : MonoBehaviour
 {
     // private TextMeshPro textMesh;
-    private float disappearTimer;
-    private color textColor;
+    // private float disappearTimer;
+    // private color textColor;
 
     // public static PoinPopup Create(Vector3 position, int poinPopup){
     //   Transform poinPopupTransform = Instantiate(FloatingTextPrefab, Vector3.zero, Quaternion.identity);

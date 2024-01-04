@@ -132,7 +132,7 @@ public class SimpleMovement : MonoBehaviour
     }
 
     void ShowFloatingText(){
-         Debug.Log("Floating Text Shown");
+        Debug.Log("Floating Text Shown");
         Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
     }
 
