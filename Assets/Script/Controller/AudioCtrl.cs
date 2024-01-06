@@ -83,11 +83,17 @@ public class AudioCtrl : MonoBehaviour
         }
     }
 
+    // public void PowerUp(Vector3 playerPos){
+    //     if(soundOn) {
+    //         AudioSource.PlayClipAtPoint(playerAudio.powerUp, playerPos);
+    //     }
+    // }
     public void PowerUp(Vector3 playerPos){
         if(soundOn) {
             AudioSource.PlayClipAtPoint(playerAudio.powerUp, playerPos);
         }
     }
+
 
     public void KeyFound(Vector3 playerPos){
         if(soundOn) {

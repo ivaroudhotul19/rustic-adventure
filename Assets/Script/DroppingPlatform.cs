@@ -1,28 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppingPlatform : MonoBehaviour
-{
+public class DroppingPlatform : MonoBehaviour {
     public float droppingDelay;
 
     Rigidbody2D rb;
 
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-	{
-        if(other.gameObject.CompareTag("PlayerFeet"))
-        {
+    void OnTriggerEnter2D(Collider2D other) {
+        // Fungsi yang dipanggil ketika objek lain bersentuhan dengan platform
+        if(other.gameObject.CompareTag("PlayerFeet")) {
+            // suatu cara untuk menunda pemanggilan fungsi dalam Unity untuk jangka waktu tertentu
             Invoke("StartDropping", droppingDelay);
         }
 	}
 
-    void StartDropping()
-    {
+    void StartDropping() {
         rb.isKinematic = false;
     }
 }

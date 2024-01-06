@@ -23,6 +23,7 @@ TagManager:
   - HarmonyKey
   - GateEnding
   - People
+  - AddLife
   layers:
   - Default
   - TransparentFX

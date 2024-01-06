@@ -26,6 +26,7 @@ public class PlayerCtrl : MonoBehaviour
 	bool leftPressed, rightPressed;
 	public Transform targetPeople;
 	public float speed;
+	private bool isSizeIncreasing = false;
 
 	public bool isFoundPeople = false;
 
@@ -39,40 +40,59 @@ public class PlayerCtrl : MonoBehaviour
 
 	void Update()
 	{
-		isGrounded = Physics2D.OverlapCircle (feet.position, feetRadius, whatIsGrounded);
+		isGrounded = Physics2D.OverlapCircle(feet.position, feetRadius, whatIsGrounded);
 
-		isGrounded = Physics2D.OverlapBox (new Vector2 (feet.position.x, feet.position.y), new Vector2 (boxWidth, boxHeight), 360.0f, whatIsGrounded);
-		float playerSpeed = Input.GetAxisRaw("Horizontal") * speedBoots;
+		isGrounded = Physics2D.OverlapBox(new Vector2(feet.position.x, feet.position.y), new Vector2(boxWidth, boxHeight), 360.0f, whatIsGrounded);
+		float horizontalInput = Input.GetAxisRaw("Horizontal") * speedBoots;
 
-		if (playerSpeed != 0) {
-			MoveHorizontal(playerSpeed);
-		} else {
+		if (horizontalInput != 0)
+		{
+			MoveHorizontal(horizontalInput);
+		}
+		else
+		{
 			StopMoving();
 		}
 
-		if (Input.GetButtonDown("Jump")) {
+		if (Input.GetButtonDown("Jump"))
+		{
 			Jump();
 		}
 
-		if (Input.GetButtonDown ("Fire1")) {
-			FireBullets ();
+		if (Input.GetButtonDown("Fire1"))
+		{
+			FireBullets();
 		}
-		ShowFalling ();
+		ShowFalling();
 
 		if (leftPressed)
-			MoveHorizontal (-speedBoots);
-	
-		if (rightPressed)
-			MoveHorizontal (speedBoots);
+			MoveHorizontal(-speedBoots);
 
-		if(GameCtrl.instance.checkHarmonyKey() && !isFoundPeople) {
+		if (rightPressed)
+			MoveHorizontal(speedBoots);
+
+		if (GameCtrl.instance.checkHarmonyKey() && !isFoundPeople)
+		{
 			MoveToPeople();
 		}
 
 		if (isFoundPeople) {
 			anim.SetInteger("State", 2);
 		}
+
+		if (!isSizeIncreasing)
+		{
+			if (horizontalInput != 0)
+			{
+				MoveHorizontal(horizontalInput);
+			}
+			else
+			{
+				StopMoving();
+			}
+		}
 	}
+
 
 	void OnDrawGizmos(){
 		Gizmos.DrawWireSphere (feet.position, feetRadius);
@@ -217,6 +237,11 @@ public class PlayerCtrl : MonoBehaviour
 			isFoundPeople = true;
 		}
 	}
+
+	// private void StartPowerupAnimation(GameObject powerupObject)
+	// {
+	// 	StartCoroutine(ApplyPowerupAnimation(powerupObject));
+	// }
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		switch (other.gameObject.tag) {
@@ -235,15 +260,51 @@ public class PlayerCtrl : MonoBehaviour
 				AudioCtrl.instance.WaterSplash(gameObject.transform.position);
 				break;
 			case "Powerup_Bullet":
-				canFire = true;
-				Vector3 powerupPos = other.gameObject.transform.position; // Store the position in the 'powerupPos' variable
-				AudioCtrl.instance.PowerUp(gameObject.transform.position);
-				Destroy(other.gameObject);
-				if (SFXOn)
-					SFXCtrl.instance.ShowBulletSparkle(powerupPos);
-				break;
+				//StartPowerupAnimation(other.gameObject);
+				break;	
 			default:
 				break;
 		}
+	
 	}
+	// private void ApplyPowerupAnimation(GameObject powerupObject)
+	// {
+	// 	// Disable player movement during size increase
+	// 	isSizeIncreasing = true;
+
+	// 	canFire = true;
+	// 	Vector3 powerupPos = powerupObject.transform.position;
+
+	// 	// Your powerup sound and destroy logic here
+	// 	AudioCtrl.instance.PowerUp(gameObject.transform.position);
+	// 	Destroy(powerupObject);
+
+	// 	// Show sparkle effect
+	// 	if (SFXOn)
+	// 		//SFXCtrl.instance.ShowBulletSparkle(powerupPos);
+	// 		SFXCtrl.instance.EnemyExplosion(powerupPos);
+
+	// 	// Apply temporary size increase animation
+	// 	float originalScale = transform.localScale.x;
+	// 	float newSizeMultiplier = 1.5f; // You can adjust this multiplier as needed
+	// 	float animationDuration = 4.0f; // You can adjust the duration of the animation
+
+	// 	float elapsedTime = 0f;
+
+	// 	while (elapsedTime < animationDuration)
+	// 	{
+	// 		float newSize = Mathf.Lerp(originalScale, originalScale * newSizeMultiplier, elapsedTime / animationDuration);
+	// 		transform.localScale = new Vector3(newSize, newSize, newSize);
+
+	// 		elapsedTime += Time.deltaTime;
+	// 		yield return null;
+	// 	}
+
+	// 	// Reset the scale back to the original size
+	// 	transform.localScale = new Vector3(originalScale, originalScale, originalScale);
+
+	// 	// Enable player movement after size increase
+	// 	isSizeIncreasing = false;
+	// }
+
 }

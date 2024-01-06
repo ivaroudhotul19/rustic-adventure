@@ -7,13 +7,15 @@ public class Testing : MonoBehaviour
 {
     public Transform FloatingTextPrefab; // Ganti GameObject menjadi Transform
 
-    void Start()
-    {
-        // PoinPopup.Create(Vector3.zero, 300, FloatingTextPrefab);
-    }
+    // void Start()
+    // {
+    //     //PoinPopup.Create(Vector3.zero, 300);
+    // }
 
-    private void Update()
-    {
-        // PoinPopup.Create(Vector3.zero, 300, FloatingTextPrefab);
-    }
+    // // private void Update(){
+    // //     if(Input.GetMouseButtonDown(0)) {
+    // //         PoinPopup.Create(UtilsClass.GetMouseWorldPosition(), 100);
+    // //     }
+    // // }
+
 }

@@ -356,7 +356,40 @@ public class GameCtrl : MonoBehaviour
         }
     }
    
-    void UpdateHearts()
+    // void UpdateHearts()
+    // {
+    //     int fullHearts = (int)data.lives;
+    //     float remaining = (float)data.lives - fullHearts;
+
+    //     for (int i = 0; i < 5; i++)
+    //     {
+    //         if (i < fullHearts)
+    //         {
+    //             ui.heartImages[i].sprite = ui.heartFull;
+    //         }
+    //         else if (remaining >= 0.75f)
+    //         {
+    //             ui.heartImages[i].sprite = ui.heartThreeQuarter;
+    //             remaining -= 0.75f;
+    //         }
+    //         else if (remaining >= 0.5f)
+    //         {
+    //             ui.heartImages[i].sprite = ui.heartHalf;
+    //             remaining -= 0.5f;
+    //         }
+            
+    //         else if (remaining >= 0.25f)
+    //         {
+    //             ui.heartImages[i].sprite = ui.heartQuarter;
+    //             remaining -= 0.25f;
+    //         }
+    //         else
+    //         {
+    //             ui.heartImages[i].sprite = ui.heartEmpty;
+    //         }
+    //     }
+    // }
+    public void UpdateHearts()
     {
         int fullHearts = (int)data.lives;
         float remaining = (float)data.lives - fullHearts;
@@ -377,7 +410,6 @@ public class GameCtrl : MonoBehaviour
                 ui.heartImages[i].sprite = ui.heartHalf;
                 remaining -= 0.5f;
             }
-            
             else if (remaining >= 0.25f)
             {
                 ui.heartImages[i].sprite = ui.heartQuarter;
@@ -389,6 +421,7 @@ public class GameCtrl : MonoBehaviour
             }
         }
     }
+
 
     public void DecreaseLivesFireTrap()
     {
