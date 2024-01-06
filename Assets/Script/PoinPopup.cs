@@ -1,43 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class PoinPopup : MonoBehaviour
 {
-    // private TextMeshPro textMesh;
+    private TextMeshPro textMesh;
     private float disappearTimer;
-    private color textColor;
 
-    // public static PoinPopup Create(Vector3 position, int poinPopup){
-    //   Transform poinPopupTransform = Instantiate(FloatingTextPrefab, Vector3.zero, Quaternion.identity);
-    //   PoinPopup poinPopup = poinPopupTransform.GetComponent<PoinPopup>();
-    //   poinPopup.Setup(poinPopup);
+    private static GameObject FloatingText; // Ganti "GameObject" menjadi "GameObject"
 
-    //   return poinPopup;
-    // }
+    public static PoinPopup Create(Vector3 position, int poinPopup, Transform floatingTextPrefab)
+    {
+        Transform poinPopupTransform = Instantiate(floatingTextPrefab, position, Quaternion.identity);
+        PoinPopup poinPopupComponent = poinPopupTransform.GetComponent<PoinPopup>();
+        poinPopupComponent.Setup(poinPopup);
 
-    // private void Awake()
-    // {
-    //   textMesh = transform.GetComponent<TextMeshPro>();
-    // }
+        return poinPopupComponent;
+    }
 
-    // public void Setup(int damageAmount)
-    // {
-    //   textMesh.SetText(damageAmount.ToString());
-    //  textColor = textMesh.color;
-    //  disappearTimer =1f;
-    // }
+    private void Awake()
+    {
+        textMesh = transform.GetComponent<TextMeshPro>();
+    }
 
-    // private void Update(){
-    //   float moveYSpeed = 20f;
-    //   transform.position +=new Vector3(0, meveYSpeed) * Time.deltaTime;
+    public void Setup(int damageAmount)
+    {
+        textMesh.SetText(damageAmount.ToString());
+        disappearTimer = 1f;
+    }
 
-    //  disappearTimer -= Time.deltaTime;
-    //  if(disappearTimer <0 ) {
-    //       float disappearSpeed = 3f;
-    //       textColor.a -= disappearSpeed * Time.deltaTime;
-    //       textMesh.color = textColor;
-    //  }
-    // }
+    private void Update()
+    {
+        float moveYSpeed = 5f;
+        transform.position += new Vector3(0, moveYSpeed) * Time.deltaTime;
+
+        disappearTimer -= Time.deltaTime;
+        if (disappearTimer < 0)
+        {
+            // Start disappearing
+            float disappearSpeed = 3f;
+        }
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
 }

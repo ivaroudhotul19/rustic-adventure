@@ -256,6 +256,25 @@ public class GameCtrl : MonoBehaviour
         ui.txtScore.text = "Score : " + data.score;
     }
 
+    public int getItemValue(Item item){
+        int itemValue = 0;
+
+        switch (item) {
+            case Item.ShinningCoin:
+                itemValue = shinningCoinValue;
+                break;
+            case Item.Coin:
+                itemValue = coinValue;
+                break;
+            case Item.Enemy:
+                itemValue = enemyValue;
+                break;
+            default:
+                break;
+        }
+        return itemValue;
+    }
+
 
     public void BulletHitEnemy(Transform enemy){
         Vector3 pos = enemy.position;

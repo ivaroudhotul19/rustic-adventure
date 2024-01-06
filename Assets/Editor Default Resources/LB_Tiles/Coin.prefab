@@ -118,6 +118,7 @@ MonoBehaviour:
   coinFX: 0
   speed: 0.09
   startFlying: 0
+  FloatingTextPrefab: {fileID: 1735740579936933236, guid: 0827545733e0c024f9664e661218567e, type: 3}
 --- !u!95 &4594120115773554168
 Animator:
   serializedVersion: 5

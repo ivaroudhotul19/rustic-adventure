@@ -15,6 +15,8 @@ public class CoinCtrl : MonoBehaviour
     public bool startFlying;
     GameObject coinMeter;
 
+    public Transform FloatingTextPrefab;
+
     void Start()
     {
         startFlying = false;
@@ -34,6 +36,12 @@ public class CoinCtrl : MonoBehaviour
         {
             if (coinFX == CoinFX.Vanish) // Menggunakan coinFX bukan CoinFX
             {
+                int value = GameCtrl.instance.getItemValue(GameCtrl.Item.Coin);
+                PoinPopup poinPopup = PoinPopup.Create(transform.position, value, FloatingTextPrefab);
+                if (poinPopup != null)
+                {
+                    poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));
+                }
                 Destroy(gameObject);
             } else if (coinFX == CoinFX.Fly) {
                 gameObject.layer = 0;

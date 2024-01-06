@@ -27,6 +27,8 @@ public class SimpleMovementTikus : MonoBehaviour
     private const int menyerang = 2;
     private const int mati = 3;
 
+    public Transform FloatingTextPrefab;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -157,6 +159,14 @@ public class SimpleMovementTikus : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+
+        int currentDamage = (int)damageAmount;
+
+        PoinPopup poinPopup = PoinPopup.Create(transform.position, currentDamage, FloatingTextPrefab);
+        if (poinPopup != null)
+        {
+            poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));
+        }
 
         if (currentHealth == 0)
         {

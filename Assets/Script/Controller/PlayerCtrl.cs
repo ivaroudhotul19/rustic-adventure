@@ -28,6 +28,8 @@ public class PlayerCtrl : MonoBehaviour
 	public float speed;
 
 	public bool isFoundPeople = false;
+
+	public Transform FloatingTextPrefab;
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -65,6 +67,10 @@ public class PlayerCtrl : MonoBehaviour
 
 		if(GameCtrl.instance.checkHarmonyKey() && !isFoundPeople) {
 			MoveToPeople();
+		}
+
+		if (isFoundPeople) {
+			anim.SetInteger("State", 2);
 		}
 	}
 
@@ -172,6 +178,12 @@ public class PlayerCtrl : MonoBehaviour
 			GameCtrl.instance.updateCoinCount();
 			SFXCtrl.instance.ShowBulletSparkle(other.gameObject.transform.position);
 			Destroy(other.gameObject);
+			int value = GameCtrl.instance.getItemValue(GameCtrl.Item.ShinningCoin);
+            PoinPopup poinPopup = PoinPopup.Create(gameObject.transform.position, value, FloatingTextPrefab);
+            if (poinPopup != null)
+            {
+                poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));
+            }
 			GameCtrl.instance.updateScore(GameCtrl.Item.ShinningCoin);
 			AudioCtrl.instance.CoinPickup(gameObject.transform.position);
 		}
