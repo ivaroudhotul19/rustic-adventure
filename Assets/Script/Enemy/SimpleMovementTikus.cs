@@ -128,6 +128,12 @@ public class SimpleMovementTikus : MonoBehaviour
         anim.SetInteger("State", mati);
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
+        int value = GameCtrl.instance.getItemValue(GameCtrl.Item.Enemy);
+        PoinPopup poinPopup = PoinPopup.Create(transform.position, value, FloatingTextPrefab);
+        if (poinPopup != null)
+        {
+            poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));
+        }
         GameCtrl.instance.BulletHitEnemy(transform);
     }
 

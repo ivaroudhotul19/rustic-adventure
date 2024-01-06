@@ -342,7 +342,8 @@ public class GameCtrl : MonoBehaviour
         textTimer.text = "Timer : " + (int)timeLeft;
         if(timeLeft <= 0) {
             textTimer.text = "Timer: 0";
-            SceneManager.LoadScene("Level1");
+            string sceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(sceneName);
         } 
           
     }
@@ -487,6 +488,21 @@ public class GameCtrl : MonoBehaviour
         data.lives = updatedLives;
 
         Debug.Log("musuh");
+
+        if(data.lives <= 0) {
+            data.lives = 5;
+            SaveData();
+            Invoke("GameOver", restartDelay);
+        } else {
+            SaveData();
+            StartCoroutine(RespawnPlayer());
+        }
+    }
+    public void ReducePlayerHealthDino()
+    {
+        double updatedLives = data.lives;
+        updatedLives -=1.5;
+        data.lives = updatedLives;
 
         if(data.lives <= 0) {
             data.lives = 5;

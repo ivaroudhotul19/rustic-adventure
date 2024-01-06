@@ -231,6 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6eddd365697864e8e1ea543e58530b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingText: {fileID: 0}
   maxHealth: 3
   speed: 2
   moveDistance: 3
+  FloatingTextPrefab: {fileID: 946361850911962946, guid: eb6405af55e8e2d43a2576072fbb026d, type: 3}

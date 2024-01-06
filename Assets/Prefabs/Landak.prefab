@@ -171,3 +171,4 @@ MonoBehaviour:
   maxHealth: 7
   speed: 2
   moveDistance: 2
+  FloatingTextPrefab: {fileID: 946361850911962946, guid: eb6405af55e8e2d43a2576072fbb026d, type: 3}

@@ -1,0 +1,244 @@
+[33mcommit 9d8faabeff60121de653efcbf21a62711ca8253e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: c32efdd af67872
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Jan 6 09:14:33 2024 +0700
+
+    Merge branch 'main' of https://github.com/ivaroudhotul19/rustic-adventure
+
+[33mcommit c32efdd0d9b96fd5371b23ee20a7af3d4909f954[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Jan 6 09:12:04 2024 +0700
+
+    text pop up
+
+[33mcommit af67872d61881fc7f6dc42266e545e2723f3546b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Thu Jan 4 19:23:16 2024 +0700
+
+    addlife
+
+[33mcommit 90dd9474b954ba49557bff700bc1e3c264bafe24[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Wed Dec 27 15:12:22 2023 +0700
+
+    Merge branch 'main' of https://github.com/ivaroudhotul19/rustic-adventure
+
+[33mcommit e0a5b94474b3e20778a24abd531f2be1f9582035[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sun Dec 24 08:24:15 2023 +0700
+
+    floating text
+
+[33mcommit b2c1b9b2f4cdd46958a9217b5fded43a8de49b2d[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Dec 23 17:02:49 2023 +0700
+
+    score
+
+[33mcommit b816089e89bba756fd33a4951ae65f9f06571321[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Dec 16 19:43:52 2023 +0700
+
+    level 3
+
+[33mcommit 76e913cc0696b5ee911118f496d5ee5f35ddab23[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Dec 16 19:30:12 2023 +0700
+
+    jalan sendiri
+
+[33mcommit 0e430dcfa8e51a81eb1725d588561d92e06731b4[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Dec 16 07:30:43 2023 +0700
+
+    harmonykey
+
+[33mcommit 2eb2d3eb1771b750d2e8671d2379f8a91dcf2e52[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Tue Dec 12 18:03:08 2023 +0700
+
+    camera
+
+[33mcommit 89d629e3c36ebdaeb7e20bb09c29976a784752f4[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sun Dec 10 12:33:46 2023 +0700
+
+    fsm dino
+
+[33mcommit bc24a143d5a2d7ae22d2d57b6bb698190bd72b8d[m
+Merge: d5ec9a2 87c0ea0
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sun Dec 10 07:12:05 2023 +0700
+
+    Merge branch 'main' of https://github.com/ivaroudhotul19/rustic-adventure
+
+[33mcommit d5ec9a2fe000ebf16b2c75e3b9b0000f29b7d0b2[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sun Dec 10 07:07:59 2023 +0700
+
+    reset data & gate & fsm dino
+
+[33mcommit 87c0ea06652911c4233da1a79aed4c131e3ff8a8[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sun Dec 10 07:04:37 2023 +0700
+
+    pause
+
+[33mcommit bb75e006bb6bd2bc8b050ed837ba590beefd49c9[m
+Merge: 7574731 f9c759b
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Dec 9 18:54:07 2023 +0700
+
+    Merge branch 'main' of https://github.com/ivaroudhotul19/rustic-adventure
+
+[33mcommit 75747314bb91cf87f4cfd50e2ed43aa02d02545b[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Dec 9 18:52:27 2023 +0700
+
+    bullet
+
+[33mcommit f9c759b79d61c3471b176a06400333a977eac1dc[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Dec 9 18:39:57 2023 +0700
+
+    level 3
+
+[33mcommit 3804f0966b28b24845dafb28f920725fc8e2a5f5[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Dec 9 18:36:31 2023 +0700
+
+    level boss
+
+[33mcommit 9ea66992581d07c462249267b02a203751c61ea9[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Dec 9 15:03:09 2023 +0700
+
+    boss'
+
+[33mcommit c12501635ce30a546aa4ab89018c962b3b1f92e8[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Dec 9 14:31:32 2023 +0700
+
+    pusing
+
+[33mcommit 6713e918e3d57783dbc1d54717b820efbe196eed[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Thu Dec 7 18:49:15 2023 +0700
+
+    level2
+
+[33mcommit 61f92fe0abf02761af8df70e7ad7cddebce8cff6[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Wed Dec 6 20:50:30 2023 +0700
+
+    scene
+
+[33mcommit 020f402a3c9e0e0bb756d488a236b07b71349e1c[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Wed Dec 6 20:48:52 2023 +0700
+
+    fixing
+
+[33mcommit 667497f48f95801102da0b93e811e26adace3b46[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Wed Dec 6 16:27:56 2023 +0700
+
+    firetrap
+
+[33mcommit 7abb8bf82bd6deb888018e90d251262c86345576[m
+Merge: 8e8792d 5426979
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Tue Dec 5 07:42:43 2023 +0700
+
+    a
+
+[33mcommit 8e8792d96adb8676219d491f30d9ae95a9741b4c[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Tue Dec 5 06:52:29 2023 +0700
+
+    ganti fsm
+
+[33mcommit 5426979165364d7d194b24e1101236479455b6a0[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sun Dec 3 20:11:03 2023 +0700
+
+    fix scene
+
+[33mcommit 44c7cc744134cdbc958825fbc907b2de4cb1c20a[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sun Dec 3 20:06:02 2023 +0700
+
+    fix
+
+[33mcommit 237cad26aa24e7b797c862d5f0bb6ef07fb244e9[m
+Merge: 5c1b735 5dac4f4
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sun Dec 3 20:02:08 2023 +0700
+
+    Merge branch 'main' of https://github.com/ivaroudhotul19/rustic-adventure
+
+[33mcommit 5c1b735c5ada91eb2438426aa2566e8bd1b8402e[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sun Dec 3 20:01:10 2023 +0700
+
+    complete menu & fsm
+
+[33mcommit 5dac4f46624014d42a522e0545364d1eab256a7c[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sun Dec 3 19:59:32 2023 +0700
+
+    tile level 2
+
+[33mcommit 85e32abc2ad67f8ebe9f4338255c50aa243ddf33[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Dec 2 20:17:51 2023 +0700
+
+    select menu
+
+[33mcommit 5078bf826249536f79c790d98940bd84eae4e7ad[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Tue Nov 28 17:16:08 2023 +0700
+
+    level complete
+
+[33mcommit f50dcde2d6fa5e283bc00132cf1f9b45e749099a[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Mon Nov 27 18:39:30 2023 +0700
+
+    fix fsm
+
+[33mcommit 28dbd6676f726f38d56d62795384f810b9ba5e32[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Mon Nov 27 12:33:47 2023 +0700
+
+    level complate
+
+[33mcommit 85420ba1d735f809de4f9393515ba8383872c059[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sun Nov 26 19:12:05 2023 +0700
+
+    pusing
+
+[33mcommit 8ebec24486ee40ea94e2e1fdc22d3e28f4a0176a[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Nov 25 13:26:25 2023 +0700
+
+    level 1
+
+[33mcommit 5c09d0a5fed3357af13103ad7b063a485fdc0c0c[m
+Author: Raflizar Deswandi Yahya <raflizardeswandiy24@gmail.com>
+Date:   Sat Nov 25 13:01:21 2023 +0700
+
+    checkpoint
+
+[33mcommit 1b3e85068dca96e93e3a493692b2e532a456a417[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Sat Nov 25 11:54:05 2023 +0700
+
+    level 1
+
+[33mcommit 667f602d4e31af7d9a97943766cf15816fa2ad26[m
+Author: ivaroudhotul19 <ivaroudhotul@gmail.com>
+Date:   Mon Nov 20 11:06:02 2023 +0700
+
+    initial commit

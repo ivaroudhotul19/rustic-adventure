@@ -31,6 +31,7 @@ public class PlayerCtrl : MonoBehaviour
 	public bool isFoundPeople = false;
 
 	public Transform FloatingTextPrefab;
+	public GameObject btnFire;
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -44,15 +45,6 @@ public class PlayerCtrl : MonoBehaviour
 
 		isGrounded = Physics2D.OverlapBox(new Vector2(feet.position.x, feet.position.y), new Vector2(boxWidth, boxHeight), 360.0f, whatIsGrounded);
 		float horizontalInput = Input.GetAxisRaw("Horizontal") * speedBoots;
-
-		if (horizontalInput != 0)
-		{
-			MoveHorizontal(horizontalInput);
-		}
-		else
-		{
-			StopMoving();
-		}
 
 		if (Input.GetButtonDown("Jump"))
 		{
@@ -71,20 +63,16 @@ public class PlayerCtrl : MonoBehaviour
 		if (rightPressed)
 			MoveHorizontal(speedBoots);
 
-		if (GameCtrl.instance.checkHarmonyKey() && !isFoundPeople)
-		{
-			MoveToPeople();
-		}
-
-		if (isFoundPeople) {
-			anim.SetInteger("State", 2);
-		}
-
 		if (!isSizeIncreasing)
 		{
 			if (horizontalInput != 0)
 			{
 				MoveHorizontal(horizontalInput);
+			} else if (GameCtrl.instance.checkHarmonyKey() && !isFoundPeople)
+			{
+				MoveToPeople();
+			} else if (isFoundPeople) {
+				anim.SetInteger("State", 4);
 			}
 			else
 			{
@@ -243,68 +231,80 @@ public class PlayerCtrl : MonoBehaviour
 	// 	StartCoroutine(ApplyPowerupAnimation(powerupObject));
 	// }
 	
-	void OnTriggerEnter2D(Collider2D other) {
-		switch (other.gameObject.tag) {
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		switch (other.gameObject.tag)
+		{
 			case "Coin":
-				if (SFXOn){
+				if (SFXOn)
+				{
 					SFXCtrl.instance.ShowCoinSparkle(other.gameObject.transform.position);
 				}
 				GameCtrl.instance.updateCoinCount();
 				GameCtrl.instance.updateScore(GameCtrl.Item.Coin);
 				AudioCtrl.instance.CoinPickup(gameObject.transform.position);
-				//Destroy(other.gameObject);
-				
+				// Destroy(other.gameObject);
 				break;
 			case "Water":
 				SFXCtrl.instance.ShowSplash(other.gameObject.transform.position);
 				AudioCtrl.instance.WaterSplash(gameObject.transform.position);
 				break;
 			case "Powerup_Bullet":
-				//StartPowerupAnimation(other.gameObject);
-				break;	
+				StartPowerupAnimation(other.gameObject);
+				break;
 			default:
 				break;
 		}
-	
 	}
-	// private void ApplyPowerupAnimation(GameObject powerupObject)
-	// {
-	// 	// Disable player movement during size increase
-	// 	isSizeIncreasing = true;
 
-	// 	canFire = true;
-	// 	Vector3 powerupPos = powerupObject.transform.position;
+	private void StartPowerupAnimation(GameObject powerupObject)
+	{
+		StartCoroutine(ApplyPowerupAnimation(powerupObject));
+	}
 
-	// 	// Your powerup sound and destroy logic here
-	// 	AudioCtrl.instance.PowerUp(gameObject.transform.position);
-	// 	Destroy(powerupObject);
+	private IEnumerator ApplyPowerupAnimation(GameObject powerupObject)
+	{
+		// Disable player movement during size increase
+		isSizeIncreasing = true;
 
-	// 	// Show sparkle effect
-	// 	if (SFXOn)
-	// 		//SFXCtrl.instance.ShowBulletSparkle(powerupPos);
-	// 		SFXCtrl.instance.EnemyExplosion(powerupPos);
+		canFire = true;
+		Vector3 powerupPos = powerupObject.transform.position;
 
-	// 	// Apply temporary size increase animation
-	// 	float originalScale = transform.localScale.x;
-	// 	float newSizeMultiplier = 1.5f; // You can adjust this multiplier as needed
-	// 	float animationDuration = 4.0f; // You can adjust the duration of the animation
+		// Your powerup sound and destroy logic here
+		AudioCtrl.instance.PowerUp(gameObject.transform.position);
+		Destroy(powerupObject);
 
-	// 	float elapsedTime = 0f;
+		btnFire.SetActive(true);
 
-	// 	while (elapsedTime < animationDuration)
-	// 	{
-	// 		float newSize = Mathf.Lerp(originalScale, originalScale * newSizeMultiplier, elapsedTime / animationDuration);
-	// 		transform.localScale = new Vector3(newSize, newSize, newSize);
+		// Show sparkle effect
+		if (SFXOn)
+		{
+			// Update this line based on your requirements
+			SFXCtrl.instance.ShowBulletSparkle(powerupPos);
+		}
 
-	// 		elapsedTime += Time.deltaTime;
-	// 		yield return null;
-	// 	}
+		// Apply temporary size increase animation
+		float originalScale = transform.localScale.x;
+		float newSizeMultiplier = 1.5f; // You can adjust this multiplier as needed
+		float animationDuration = 4.0f; // You can adjust the duration of the animation
 
-	// 	// Reset the scale back to the original size
-	// 	transform.localScale = new Vector3(originalScale, originalScale, originalScale);
+		float elapsedTime = 0f;
 
-	// 	// Enable player movement after size increase
-	// 	isSizeIncreasing = false;
-	// }
+		while (elapsedTime < animationDuration)
+		{
+			float newSize = Mathf.Lerp(originalScale, originalScale * newSizeMultiplier, elapsedTime / animationDuration);
+			transform.localScale = new Vector3(newSize, newSize, newSize);
+
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+
+		// Reset the scale back to the original size
+		transform.localScale = new Vector3(originalScale, originalScale, originalScale);
+
+		// Enable player movement after size increase
+		isSizeIncreasing = false;
+	}
+
 
 }
