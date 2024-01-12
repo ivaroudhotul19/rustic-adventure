@@ -225,11 +225,6 @@ public class PlayerCtrl : MonoBehaviour
 			isFoundPeople = true;
 		}
 	}
-
-	// private void StartPowerupAnimation(GameObject powerupObject)
-	// {
-	// 	StartCoroutine(ApplyPowerupAnimation(powerupObject));
-	// }
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -286,13 +281,15 @@ public class PlayerCtrl : MonoBehaviour
 		// Apply temporary size increase animation
 		float originalScale = transform.localScale.x;
 		float newSizeMultiplier = 1.5f; // You can adjust this multiplier as needed
-		float animationDuration = 4.0f; // You can adjust the duration of the animation
+		float animationDuration = 1.2f; // You can adjust the duration of the animation
 
 		float elapsedTime = 0f;
 
 		while (elapsedTime < animationDuration)
 		{
 			float newSize = Mathf.Lerp(originalScale, originalScale * newSizeMultiplier, elapsedTime / animationDuration);
+			sr.color = Color.white;
+			anim.SetInteger("State", 0);
 			transform.localScale = new Vector3(newSize, newSize, newSize);
 
 			elapsedTime += Time.deltaTime;

@@ -47,7 +47,6 @@ public class SimpleMovement : MonoBehaviour
         if (currentHealth == 0)
         {
             Invoke("DelayedBulletHitEnemy", 0.1f);
-            //StartCoroutine(DelayedBulletHitEnemy());
         }
         else if (currentHealth == 1)
         {
@@ -137,13 +136,6 @@ public class SimpleMovement : MonoBehaviour
         }
         GameCtrl.instance.BulletHitEnemy(transform);
     }
-
-    void ShowFloatingText(){
-        Debug.Log("Floating Text Shown");
-        Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
-    }
-
-
     IEnumerator ChasePlayer()
     {
         if (!isChasingPlayer)
@@ -172,6 +164,15 @@ public class SimpleMovement : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+        
+
+        int currentDamage = (int)damageAmount;
+
+        PoinPopup poinPopup = PoinPopup.Create(transform.position, currentDamage, FloatingTextPrefab);
+        if (poinPopup != null)
+        {
+            poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));
+        }
 
         if (currentHealth == 0)
         {
@@ -204,11 +205,7 @@ public class SimpleMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Powerup_Bullet"))
-        {
-            // Handle collision with power-up bullet if needed
-        } 
-        else if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             gameCtrl.ReducePlayerHealthJamur();
         }

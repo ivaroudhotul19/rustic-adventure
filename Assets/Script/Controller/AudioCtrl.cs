@@ -82,6 +82,11 @@ public class AudioCtrl : MonoBehaviour
             AudioSource.PlayClipAtPoint(playerAudio.waterSplash, playerPos);
         }
     }
+    public void AddLife(Vector3 playerPos){
+        if(soundOn) {
+            AudioSource.PlayClipAtPoint(playerAudio.addLife, playerPos);
+        }
+    }
 
     // public void PowerUp(Vector3 playerPos){
     //     if(soundOn) {

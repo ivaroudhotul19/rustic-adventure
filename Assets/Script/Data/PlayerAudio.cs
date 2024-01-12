@@ -16,4 +16,5 @@ public class PlayerAudio
     public AudioClip powerUp;
     public AudioClip keyFound;
     public AudioClip playerDied;
+    public AudioClip addLife;
 }

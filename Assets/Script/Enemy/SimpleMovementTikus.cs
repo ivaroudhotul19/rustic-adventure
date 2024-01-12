@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleMovementTikus : MonoBehaviour
 {
+    public GameObject FloatingText;
     public float maxHealth;
     private float currentHealth;
     private GameCtrl gameCtrl;
@@ -205,11 +206,7 @@ public class SimpleMovementTikus : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Powerup_Bullet"))
-        {
-            // Handle collision with power-up bullet if needed
-        } 
-        else if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             gameCtrl.ReducePlayerHealthTikus();
         } else if (other.gameObject.CompareTag("Barrier")) {

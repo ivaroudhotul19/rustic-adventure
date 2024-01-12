@@ -7,7 +7,7 @@ public class PoinPopup : MonoBehaviour
     private TextMeshPro textMesh;
     private float disappearTimer;
 
-    private static GameObject FloatingText; // Ganti "GameObject" menjadi "GameObject"
+    private static GameObject FloatingText;
 
     public static PoinPopup Create(Vector3 position, int poinPopup, Transform floatingTextPrefab)
     {
@@ -26,6 +26,7 @@ public class PoinPopup : MonoBehaviour
     public void Setup(int damageAmount)
     {
         textMesh.SetText(damageAmount.ToString());
+       
         disappearTimer = 1f;
     }
 
@@ -35,11 +36,11 @@ public class PoinPopup : MonoBehaviour
         transform.position += new Vector3(0, moveYSpeed) * Time.deltaTime;
 
         disappearTimer -= Time.deltaTime;
-        if (disappearTimer < 0)
-        {
-            // Start disappearing
-            float disappearSpeed = 3f;
-        }
+        // if (disappearTimer < 0)
+        // {
+        //     // Start disappearing
+        //     float disappearSpeed = 3f;
+        // }
     }
 
     public void SetPosition(Vector3 position)
