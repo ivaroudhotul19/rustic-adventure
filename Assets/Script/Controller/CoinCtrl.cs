@@ -37,7 +37,7 @@ public class CoinCtrl : MonoBehaviour
             if (coinFX == CoinFX.Vanish) // Menggunakan coinFX bukan CoinFX
             {
                 int value = GameCtrl.instance.getItemValue(GameCtrl.Item.Coin);
-                PoinPopup poinPopup = PoinPopup.Create(transform.position, value, FloatingTextPrefab);
+                PoinPopup poinPopup = PoinPopup.Create(transform.position, value, FloatingTextPrefab, Color.white);
                 if (poinPopup != null)
                 {
                     poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));

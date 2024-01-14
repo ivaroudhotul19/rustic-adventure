@@ -9,11 +9,11 @@ public class PoinPopup : MonoBehaviour
 
     private static GameObject FloatingText;
 
-    public static PoinPopup Create(Vector3 position, int poinPopup, Transform floatingTextPrefab)
+    public static PoinPopup Create(Vector3 position, int poinPopup, Transform floatingTextPrefab, Color textColor)
     {
         Transform poinPopupTransform = Instantiate(floatingTextPrefab, position, Quaternion.identity);
         PoinPopup poinPopupComponent = poinPopupTransform.GetComponent<PoinPopup>();
-        poinPopupComponent.Setup(poinPopup);
+        poinPopupComponent.Setup(poinPopup, textColor);
 
         return poinPopupComponent;
     }
@@ -23,10 +23,12 @@ public class PoinPopup : MonoBehaviour
         textMesh = transform.GetComponent<TextMeshPro>();
     }
 
-    public void Setup(int damageAmount)
+    public void Setup(int damageAmount, Color textColor)
     {
         textMesh.SetText(damageAmount.ToString());
-       
+
+        textMesh.color = textColor;
+
         disappearTimer = 1f;
     }
 

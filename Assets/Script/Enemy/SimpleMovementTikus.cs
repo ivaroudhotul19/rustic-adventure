@@ -130,7 +130,7 @@ public class SimpleMovementTikus : MonoBehaviour
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
         int value = GameCtrl.instance.getItemValue(GameCtrl.Item.Enemy);
-        PoinPopup poinPopup = PoinPopup.Create(transform.position, value, FloatingTextPrefab);
+        PoinPopup poinPopup = PoinPopup.Create(transform.position, value, FloatingTextPrefab, Color.white);
         if (poinPopup != null)
         {
             poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));
@@ -169,7 +169,7 @@ public class SimpleMovementTikus : MonoBehaviour
 
         int currentDamage = (int)damageAmount;
 
-        PoinPopup poinPopup = PoinPopup.Create(transform.position, currentDamage, FloatingTextPrefab);
+        PoinPopup poinPopup = PoinPopup.Create(transform.position, currentDamage, FloatingTextPrefab, Color.red);
         if (poinPopup != null)
         {
             poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));

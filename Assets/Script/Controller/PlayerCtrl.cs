@@ -187,7 +187,7 @@ public class PlayerCtrl : MonoBehaviour
 			SFXCtrl.instance.ShowBulletSparkle(other.gameObject.transform.position);
 			Destroy(other.gameObject);
 			int value = GameCtrl.instance.getItemValue(GameCtrl.Item.ShinningCoin);
-            PoinPopup poinPopup = PoinPopup.Create(gameObject.transform.position, value, FloatingTextPrefab);
+            PoinPopup poinPopup = PoinPopup.Create(gameObject.transform.position, value, FloatingTextPrefab, Color.white);
             if (poinPopup != null)
             {
                 poinPopup.SetPosition(transform.position + new Vector3(0f, 1f, 0f));

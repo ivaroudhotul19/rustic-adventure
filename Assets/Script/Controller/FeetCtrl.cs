@@ -26,6 +26,11 @@ public class FeetCtrl : MonoBehaviour
 
             player.transform.parent = other.gameObject.transform;
         }
+        if (other.gameObject.CompareTag("Coin")) {
+            GameCtrl.instance.updateCoinCount1(); // Update count coin
+            GameCtrl.instance.updateScore1(); // Update score
+            Destroy(other.gameObject);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
