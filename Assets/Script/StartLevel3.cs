@@ -10,6 +10,6 @@ public class StartLevel3 : MonoBehaviour
     }
 
     private void Start() {
-        textWriter.AddWriter(text, "Setelah lewat Hutan Perdamaian, Ruvy masuk ke Level Kedua di lembah misterius. Di sini, dia menghadapi tantangan baru, yaitu landak berduri yang bisa menyakitkan. Selain itu, masih ada musuh lama seperti tikus dan jamur beracun. Ruvy bisa menembak setelah makan ceri, dan kalau berhasil menembak musuh, pemain dapat skor ekstra. Pemain juga harus cari kunci di tengah jalan untuk buka pintu ke level berikutnya. Jadi, permainannya semakin seru dan menantang, di mana pemain harus hindari musuh, kumpulkan kunci, dan berusaha dapat skor tinggi.", .1f, true);
+        textWriter.AddWriter(text, "Setelah melewati tantangan di Hutan Perdamaian dan berhasil menaklukkan landak berduri serta musuh-musuh lainnya, Ruvy melangkah ke Level Ketiga yang tidak kalah menantang, Pegunungan Harmony. Dalam petualangan ini, Ruvy harus mengambil kunci ditengah perjalanan untuk membuka pintu level complete, pemain akan dihadapkan pada musuh terkuat, Dino. Ruvy harus menghadapi Dino yang menyimpan kunci harmoni untuk dapat menyelesaikan permainan ini.", .1f, true);
     }  
 }

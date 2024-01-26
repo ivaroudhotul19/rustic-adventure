@@ -18,8 +18,7 @@ public class PoinPopup : MonoBehaviour
         return poinPopupComponent;
     }
 
-    private void Awake()
-    {
+    private void Awake() {
         textMesh = transform.GetComponent<TextMeshPro>();
     }
 

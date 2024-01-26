@@ -19,6 +19,7 @@ public class MobileUIController : MonoBehaviour
 
 	public void MobileMoveRight () {
 		playerCtrl.MobileMoveRight ();
+		 
 	}
 
 	public void MobileStop () {

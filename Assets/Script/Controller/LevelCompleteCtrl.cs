@@ -32,6 +32,11 @@ public class LevelCompleteCtrl : MonoBehaviour
             showThreeStars = true;
             GameCtrl.instance.SetStarsAwarded(levelNumber, 3);
             Invoke("ShowGoldenStars", animStartDelay);
+            if (levelNumber == 2)
+            {
+                BossAI bossAI = GameObject.FindGameObjectWithTag("LevelOneBoss").GetComponent<BossAI>();
+                bossAI.SetBossHealth(30); // Atur nyawa bos menjadi 30
+            }
         }
 
         if (score >= ScoreForTwoStars && score < ScoreForThreeStars)
@@ -41,7 +46,7 @@ public class LevelCompleteCtrl : MonoBehaviour
             Invoke("ShowGoldenStars", animStartDelay);
         }
 
-        if (score == ScoreForOneStar)
+        if (score <= ScoreForOneStar)
         {
             GameCtrl.instance.SetStarsAwarded(levelNumber, 1);
             Invoke("ShowGoldenStars", animStartDelay);

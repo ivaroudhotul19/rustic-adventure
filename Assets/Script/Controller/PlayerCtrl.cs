@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-	public float speedBoots; //set 5
+	public float speedBoots; //set 5s
 
 	public float jumpSpeed;// set 600
 	public bool isGrounded;
@@ -57,21 +57,28 @@ public class PlayerCtrl : MonoBehaviour
 		}
 		ShowFalling();
 
-		if (leftPressed)
-			MoveHorizontal(-speedBoots);
-
-		if (rightPressed)
-			MoveHorizontal(speedBoots);
+		
 
 		if (!isSizeIncreasing)
 		{
-			if (horizontalInput != 0)
+			if (leftPressed)
+			{
+				MoveHorizontal(-speedBoots);
+			}
+			else if (rightPressed)
+			{
+				MoveHorizontal(speedBoots);
+			}
+			else if (horizontalInput != 0)
 			{
 				MoveHorizontal(horizontalInput);
-			} else if (GameCtrl.instance.checkHarmonyKey() && !isFoundPeople)
+			}
+			else if (GameCtrl.instance.checkHarmonyKey() && !isFoundPeople)
 			{
 				MoveToPeople();
-			} else if (isFoundPeople) {
+			}
+			else if (isFoundPeople)
+			{
 				anim.SetInteger("State", 4);
 			}
 			else
@@ -259,29 +266,22 @@ public class PlayerCtrl : MonoBehaviour
 
 	private IEnumerator ApplyPowerupAnimation(GameObject powerupObject)
 	{
-		// Disable player movement during size increase
 		isSizeIncreasing = true;
 
 		canFire = true;
 		Vector3 powerupPos = powerupObject.transform.position;
-
-		// Your powerup sound and destroy logic here
 		AudioCtrl.instance.PowerUp(gameObject.transform.position);
 		Destroy(powerupObject);
 
 		btnFire.SetActive(true);
-
-		// Show sparkle effect
 		if (SFXOn)
 		{
-			// Update this line based on your requirements
 			SFXCtrl.instance.ShowBulletSparkle(powerupPos);
 		}
 
-		// Apply temporary size increase animation
 		float originalScale = transform.localScale.x;
-		float newSizeMultiplier = 1.5f; // You can adjust this multiplier as needed
-		float animationDuration = 1.2f; // You can adjust the duration of the animation
+		float newSizeMultiplier = 1.5f; 
+		float animationDuration = 1.2f; 
 
 		float elapsedTime = 0f;
 
@@ -296,12 +296,8 @@ public class PlayerCtrl : MonoBehaviour
 			yield return null;
 		}
 
-		// Reset the scale back to the original size
 		transform.localScale = new Vector3(originalScale, originalScale, originalScale);
 
-		// Enable player movement after size increase
 		isSizeIncreasing = false;
 	}
-
-
 }

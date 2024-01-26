@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;    //untuk bekerja dengan file
 using System.Runtime.Serialization.Formatters.Binary; //untuk menyimpan data dalam format biner
-using DG.Tweening;
+using DG.Tweening; // untuk animasi dengan DOTween
 
 public class GameCtrl : MonoBehaviour
 {
@@ -32,25 +32,27 @@ public class GameCtrl : MonoBehaviour
     float timeLeft;
     private GameObject player;
     private Vector3 initialPlayerPosition;
+    public float levelCompletionTime;
+
     
-    void Awake()
+    void Awake() // Fungsi Awake dijalankan saat objek pertama kali diinisialisasi
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = this;
         }
 
+        // Inisialisasi objek BinaryFormatter untuk menyimpan dan membaca data dalam format biner
         bf = new BinaryFormatter();
         dataFilePath = Application.persistentDataPath + "/game.dat";
 
         Debug.Log(dataFilePath);
-
+        // Inisialisasi pemain dan posisi awal pemain
         player = GameObject.FindGameObjectWithTag("Player"); // Inisialisasi player
         initialPlayerPosition = player.transform.position;
     }
 
-    void Start()
-    {
+    void Start() {
+        // Mengatur ulang data permainan dan inisialisasi timer
         ResetData();
         timeLeft = maxTime;
         HandleFirstBoot();
@@ -61,8 +63,8 @@ public class GameCtrl : MonoBehaviour
         isPaused = false;
     }
 
-    void Update()
-    {
+    void Update() {
+        // Mengembalikan pemain ke checkpoint jika checkpoint disimpan
         if(PlayerPrefs.HasKey("CPX")){
             float x = PlayerPrefs.GetFloat("CPX");
             float y = PlayerPrefs.GetFloat("CPY");
@@ -71,29 +73,29 @@ public class GameCtrl : MonoBehaviour
 
             PlayerPrefs.DeleteKey("CPX");
         }
-        if (isPaused)
+        if (isPaused) // Mengatur waktu berhenti jika permainan dijeda
         {
             Time.timeScale = 0;
         } else {
             Time.timeScale = 1;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown(KeyCode.Escape)){  // Mengatur ulang data jika tombol Escape ditekan
             ResetData();
         }
 
-        if(timeLeft > 0 ) {
+        if(timeLeft > 0 ) { // Mengupdate timer permainan
             UpdateTimer();
         }
     }
 
-    public void SaveData(){
+    public void SaveData(){ // Fungsi SaveData untuk menyimpan data permainan ke file
         FileStream fs = new FileStream(dataFilePath, FileMode.Create);
         bf.Serialize(fs,data);
         fs.Close();
     }
 
-    public void LoadData(){
+    public void LoadData(){ //untuk membaca data permainan dari file
         if(File.Exists(dataFilePath)){
             FileStream fs = new FileStream(dataFilePath, FileMode.Open);
             data = (GameData)bf.Deserialize(fs);
@@ -104,6 +106,7 @@ public class GameCtrl : MonoBehaviour
         }
     }
 
+    //untuk memuat dan menyimpan data saat objek diaktifkan dan dinonaktifkan
     void OnEnable() {
         //Debug.Log("Data Loaded");
         LoadData();
@@ -116,17 +119,16 @@ public class GameCtrl : MonoBehaviour
     }
 
     void ResetData(){
-        FileStream fs = new FileStream(dataFilePath, FileMode.Create);
-       
-        data.coinCount = 0;
+        FileStream fs = new FileStream(dataFilePath, FileMode.Create); //file akan dihapus jika sudah ada atai dibuat jika belum ada
+        data.coinCount = 0; //data menjadi 0
         ui.txtCoinCount.text = " x 0";
-        data.score = 0;
+        data.score = 0; //nilai score dalam data = 0
         ui.txtScore.text = "Score : " + data.score;
-        data.lives = 5;
+        data.lives = 5; 
         data.keyFound = false;
         data.harmonyKeyFound = false;
-        UpdateHearts();
-        bf.Serialize(fs,data);
+        UpdateHearts(); 
+        bf.Serialize(fs,data); //untuk menulis objek data ke dalam file yang telah dibuka dan akan menyimpan status permainan ke file ini
         fs.Close();
         Debug.Log("Data Reset");
     }
@@ -275,7 +277,6 @@ public class GameCtrl : MonoBehaviour
         return itemValue;
     }
 
-
     public void BulletHitEnemy(Transform enemy){
         Vector3 pos = enemy.position;
         pos.z = 20f;
@@ -397,6 +398,12 @@ public class GameCtrl : MonoBehaviour
         updatedLives -= 0.25;
         data.lives = updatedLives;
         UpdateHearts();
+
+        if(data.lives <= 0) {
+            data.lives = 5;
+            SaveData();
+            Invoke("GameOver", restartDelay);
+        } 
     }
 
     public void CheckLives(){
@@ -421,7 +428,7 @@ public class GameCtrl : MonoBehaviour
         Debug.Log("musuh");
 
         if(data.lives <= 0) {
-            data.lives = 5;
+            data.lives = 0;
             SaveData();
             Invoke("GameOver", restartDelay);
         } else {
@@ -439,9 +446,10 @@ public class GameCtrl : MonoBehaviour
         Debug.Log("musuh");
 
         if(data.lives <= 0) {
-            data.lives = 5;
+            data.lives = 0;
             SaveData();
             Invoke("GameOver", restartDelay);
+            //playerCtrl.DeactivatePlayer();
         } else {
             SaveData();
             StartCoroutine(RespawnPlayer());
@@ -457,7 +465,7 @@ public class GameCtrl : MonoBehaviour
         Debug.Log("musuh");
 
         if(data.lives <= 0) {
-            data.lives = 5;
+            data.lives = 0;
             SaveData();
             Invoke("GameOver", restartDelay);
         } else {
@@ -472,7 +480,7 @@ public class GameCtrl : MonoBehaviour
         data.lives = updatedLives;
 
         if(data.lives <= 0) {
-            data.lives = 5;
+            data.lives = 0;
             SaveData();
             Invoke("GameOver", restartDelay);
         } else {
@@ -513,6 +521,9 @@ public class GameCtrl : MonoBehaviour
 
     void GameOver(){
         ui.panelGameOver.SetActive(true);
+        string formattedCompletionTime = string.Format("{0}:{1:00}", (int)levelCompletionTime / 60, (int)levelCompletionTime % 60);
+        ui.panelGameOver.GetComponentInChildren<Text>().text = "Waktu: " + formattedCompletionTime;
+
         mobileUI.SetActive(false);
 
         // Menonaktifkan skrip PlayerCtrl pada pemain
@@ -541,6 +552,12 @@ public class GameCtrl : MonoBehaviour
         updatedLives -= 0.25;
         data.lives = updatedLives;
         UpdateHearts();
+
+        if(data.lives <= 0) {
+            data.lives = 5;
+            SaveData();
+            Invoke("GameOver", restartDelay);
+        } 
     }
 
 
@@ -548,6 +565,11 @@ public class GameCtrl : MonoBehaviour
     {
         levelCompleteMenu.SetActive(true);
         mobileUI.SetActive(false);
+        float completionTime = maxTime - timeLeft;
+        string formattedTime = string.Format("{0}:{1:00}", (int)completionTime / 60, (int)completionTime % 60);
+        levelCompleteMenu.GetComponentInChildren<Text>().text = "Waktu: " + formattedTime;
+        SetLevelCompletionTime(completionTime);
+
     }
 
     public void ShowPausePanel()
@@ -556,7 +578,7 @@ public class GameCtrl : MonoBehaviour
             mobileUI.SetActive(false);
         
         ui.panelPause.SetActive(true);
-         ui.panelPause.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f, false);
+        ui.panelPause.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f, false);
 
         //isPaused = true;
         Invoke("SetPause", 1.1f);
@@ -597,5 +619,10 @@ public class GameCtrl : MonoBehaviour
 
     public bool checkHarmonyKey(){
         return data.harmonyKeyFound;
+    }
+
+    public void SetLevelCompletionTime(float time)
+    {
+        levelCompletionTime = time;
     }
 }

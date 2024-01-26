@@ -47,6 +47,7 @@ public class AudioCtrl : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     public void PlayerJump(Vector3 playerPos){
         if(soundOn) {

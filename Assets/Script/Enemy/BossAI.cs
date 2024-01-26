@@ -29,7 +29,7 @@ public class BossAI : MonoBehaviour
     private const int menyerang = 2;
     private const int menghindar = 3;
     private const int mati = 4;
-
+    public int initialHealth;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,7 +44,7 @@ public class BossAI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))  // Change "Fire1" to your input button
+        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space)) 
         {
             // Trigger jumping when the player shoots
             if (!isJumping)
@@ -185,5 +185,11 @@ public class BossAI : MonoBehaviour
     {
         // Call a method to handle the enemy being hit
         GameCtrl.instance.ShowHarmonyKey(gameObject.transform);
+    }
+
+    public void SetBossHealth(int newHealth)
+    {
+        health = newHealth;
+        bossHealth.value = health;
     }
 }

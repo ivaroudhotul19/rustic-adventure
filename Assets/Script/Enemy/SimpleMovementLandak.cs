@@ -107,7 +107,7 @@ public class SimpleMovementLandak : MonoBehaviour
             StartCoroutine(ChasePlayer());
         }
 
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(1.0f);
 
         sr.flipX = movingRight;
         isHitByPowerBullet = false;
@@ -118,7 +118,7 @@ public class SimpleMovementLandak : MonoBehaviour
         isHitByPowerBullet = true;
         anim.SetInteger("State", diam);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
     }
 
     IEnumerator DelayedBulletHitEnemy()

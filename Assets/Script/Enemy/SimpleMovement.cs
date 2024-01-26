@@ -109,7 +109,7 @@ public class SimpleMovement : MonoBehaviour
             StartCoroutine(ChasePlayer());
         }
 
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(1.0f);
 
         sr.flipX = movingRight;
         isHitByPowerBullet = false;
@@ -119,15 +119,15 @@ public class SimpleMovement : MonoBehaviour
     {
         isHitByPowerBullet = true;
         anim.SetInteger("State", diam);
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(5.0f);
+        //rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1.0f);
     }
 
     IEnumerator DelayedBulletHitEnemy()
     {
         anim.SetInteger("State", mati);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         int value = GameCtrl.instance.getItemValue(GameCtrl.Item.Enemy);
         PoinPopup poinPopup = PoinPopup.Create(transform.position, value, FloatingTextPrefab, Color.white);
         if (poinPopup != null)

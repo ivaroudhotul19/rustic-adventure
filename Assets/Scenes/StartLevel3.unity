@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 455508574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 653e68d83f0b34c449cf880e9e74de40, type: 3}
+  m_Script: {fileID: 11500000, guid: fd0c1314d190ed245a53c1f35af2be26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textWriter: {fileID: 2031782362}
@@ -2902,7 +2902,6 @@ GameObject:
   - component: {fileID: 735519073}
   - component: {fileID: 735519072}
   - component: {fileID: 735519071}
-  - component: {fileID: 735519074}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2977,23 +2976,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &735519074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735519070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1bb44cc106e504994b58eab5d3cc33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  yOffset: 0
-  minX: 0
-  minY: 0
-  maxY: 0
 --- !u!1001 &737297835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3148,12 +3130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4299912341676241284, guid: 3371e9ae5d081dd448b4a3287367ef75, type: 3}
-  gizmoPosition: {x: -23, y: 1}
+  gizmoPosition: {x: 404, y: 12}
   gridOrigin: {x: 0, y: 0, z: 0}
   mapSize: {x: 0, y: 0}
   tileSize: {x: 0, y: 0}
   brushMode: 0
-  paintMode: 1
+  paintMode: 0
   colliderMode: 0
   groupMode: 0
   copyMode: 0
@@ -3163,7 +3145,7 @@ MonoBehaviour:
   verticalColliders: 0
   showGrid: 0
   moveWithMouse: 0
-  workingMode: 0
+  workingMode: 1
   prevMode: 0
   isLeftMouseDown: 0
   isRightMouseDown: 0
@@ -4597,7 +4579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAudio: {fileID: 1186955095}
   buttonAction: 0
-  sceneName: Level2
+  sceneName: Level3
 --- !u!82 &1186955095
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7228,7 +7210,7 @@ Transform:
   m_GameObject: {fileID: 1948101719}
   m_LocalRotation: {x: -0, y: -0.000004117377, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 735519073}
