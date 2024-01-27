@@ -506,9 +506,10 @@ public class GameCtrl : MonoBehaviour
         return data.score;
     }
 
-    public void SetStarsAwarded(int levelNumber, int numOfStars)
+    public void SetStarsAwarded(int levelNumber, int numOfStars, string time)
     {
         data.levelData[levelNumber].starsAwarded = numOfStars;
+        data.levelData[levelNumber].time = time;
         Debug.Log("Number of Stars Awarded = " + data.levelData[levelNumber].starsAwarded);
     }
 
@@ -569,7 +570,6 @@ public class GameCtrl : MonoBehaviour
         string formattedTime = string.Format("{0}:{1:00}", (int)completionTime / 60, (int)completionTime % 60);
         levelCompleteMenu.GetComponentInChildren<Text>().text = "Waktu: " + formattedTime;
         SetLevelCompletionTime(completionTime);
-
     }
 
     public void ShowPausePanel()
@@ -624,5 +624,30 @@ public class GameCtrl : MonoBehaviour
     public void SetLevelCompletionTime(float time)
     {
         levelCompletionTime = time;
+    }
+
+    public string GetLevelCompletionTime()
+    {
+        float completionTime = maxTime - timeLeft;
+        string formattedTime = string.Format("{0}:{1:00}", (int)completionTime / 60, (int)completionTime % 60);
+
+        return formattedTime;
+    }
+
+    public int GetBossHealth()
+    {
+        int health = 10;
+        int starsAwarded = DataCtrl.instance.getStars(2);
+
+        Debug.Log("Stars Awarded: " + starsAwarded);
+
+        if (starsAwarded == 3)
+        {
+            health *= 3;
+        }
+
+        Debug.Log("Boss Health: " + health);
+
+        return health;
     }
 }

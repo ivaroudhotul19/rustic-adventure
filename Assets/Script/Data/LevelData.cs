@@ -9,4 +9,5 @@ public class LevelData
     public int levelNumber;
     public bool isUnlocked;
     public int starsAwarded;
+    public string time;
 }

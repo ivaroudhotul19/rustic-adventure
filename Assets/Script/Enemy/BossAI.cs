@@ -32,6 +32,7 @@ public class BossAI : MonoBehaviour
     public int initialHealth;
     void Start()
     {
+        health = GameCtrl.instance.GetBossHealth();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -189,6 +190,7 @@ public class BossAI : MonoBehaviour
 
     public void SetBossHealth(int newHealth)
     {
+        Debug.Log("SetBossHealth: " + newHealth);
         health = newHealth;
         bossHealth.value = health;
     }

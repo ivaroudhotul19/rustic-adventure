@@ -60,10 +60,12 @@ public class DataCtrl : MonoBehaviour
                 data.levelData[i] = new LevelData();
                 data.levelData[i].isUnlocked = true;
                 data.levelData[i].starsAwarded = 0;
+                data.levelData[i].time = "00:00";
             } else {
                 data.levelData[i] = new LevelData();
                 data.levelData[i].isUnlocked = false;
                 data.levelData[i].starsAwarded = 0;
+                data.levelData[i].time = "00:00";
             }
         }
 
@@ -84,6 +86,10 @@ public class DataCtrl : MonoBehaviour
 
     public int getStars(int levelNumber) {
         return data.levelData[levelNumber].starsAwarded;
+    }
+
+    public string getTime(int levelNumber) {
+        return data.levelData[levelNumber].time;
     }
 
     void OnEnable()

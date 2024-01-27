@@ -15,7 +15,8 @@ public class BtnLevelCtrl : MonoBehaviour
 
     public Sprite lockedBtn;            
     public Sprite unlockedBtn; 
-    public string sceneName;         
+    public string sceneName;
+    Text txtTime;         
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class BtnLevelCtrl : MonoBehaviour
         star2 = btn.gameObject.transform.GetChild(2);
         star3 = btn.gameObject.transform.GetChild(3);
 
+        txtTime = btn.gameObject.transform.GetChild(4).GetComponent<Text>();
+
         BtnStatus();
 
     }
@@ -36,18 +39,21 @@ public class BtnLevelCtrl : MonoBehaviour
     void BtnStatus() {
         bool unlocked = DataCtrl.instance.isUnlocked(levelNumber);
         int starsAwarded = DataCtrl.instance.getStars(levelNumber);
+        string time = DataCtrl.instance.getTime(levelNumber);
 
         if(unlocked) {
             if(starsAwarded == 3) {
                 star1.gameObject.SetActive(true);
                 star2.gameObject.SetActive(true);
                 star3.gameObject.SetActive(true);
+                txtTime.text = "Time : " + time;
             }
 
             if (starsAwarded == 2) {
                 star1.gameObject.SetActive(true);
                 star2.gameObject.SetActive(true);
                 star3.gameObject.SetActive(false);
+                txtTime.text = "Time : " + time;
             }
 
             if (starsAwarded == 1)
@@ -55,12 +61,14 @@ public class BtnLevelCtrl : MonoBehaviour
                 star1.gameObject.SetActive(true);
                 star2.gameObject.SetActive(false);
                 star3.gameObject.SetActive(false);
+                txtTime.text = "Time : " + time;
             }
 
             if (starsAwarded == 0) {
                 star1.gameObject.SetActive(false);
                 star2.gameObject.SetActive(false);
                 star3.gameObject.SetActive(false);
+                txtTime.text = "Time : " + time;
             }
 
             btn.onClick.AddListener(LoadScene);
@@ -71,6 +79,7 @@ public class BtnLevelCtrl : MonoBehaviour
             star1.gameObject.SetActive(false);
             star2.gameObject.SetActive(false);
             star3.gameObject.SetActive(false);
+            txtTime.text = "Time : 00:00";
         }
     }
 

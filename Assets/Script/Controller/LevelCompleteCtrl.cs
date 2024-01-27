@@ -22,15 +22,18 @@ public class LevelCompleteCtrl : MonoBehaviour
     public float animDelay;       
 
     bool showTwoStars, showThreeStars;
+
+    public string time;
     void Start()
     {
         score = GameCtrl.instance.GetScore();
         txtScore.text = "" + score;
+        time = GameCtrl.instance.GetLevelCompletionTime();
 
         if(score >= ScoreForThreeStars)
         {
             showThreeStars = true;
-            GameCtrl.instance.SetStarsAwarded(levelNumber, 3);
+            GameCtrl.instance.SetStarsAwarded(levelNumber, 3, time);
             Invoke("ShowGoldenStars", animStartDelay);
             if (levelNumber == 2)
             {
@@ -42,13 +45,13 @@ public class LevelCompleteCtrl : MonoBehaviour
         if (score >= ScoreForTwoStars && score < ScoreForThreeStars)
         {
             showTwoStars = true;
-            GameCtrl.instance.SetStarsAwarded(levelNumber, 2);
+            GameCtrl.instance.SetStarsAwarded(levelNumber, 2, time);
             Invoke("ShowGoldenStars", animStartDelay);
         }
 
         if (score <= ScoreForOneStar)
         {
-            GameCtrl.instance.SetStarsAwarded(levelNumber, 1);
+            GameCtrl.instance.SetStarsAwarded(levelNumber, 1, time);
             Invoke("ShowGoldenStars", animStartDelay);
         }
     }
